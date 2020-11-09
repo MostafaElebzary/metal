@@ -56,15 +56,18 @@
                         <label for="example-text-input" class="col-sm-2">{{trans('admin.branchs')}}</label>
 
                         <div class="col-sm-10">
-                            
+
                             {{ Form::select('branch_id',App\Branch::pluck('name','id'),$branch_id
                          ,["class"=>"form-control branch_id " ]) }}
 
                         </div>
                     </div>
                 </div>
+                <div class="row">             
 
-                {{ Form::submit( trans('admin.search') ,['class'=>'btn btn-info btn-block']) }}
+                {!! Form::submit( trans('admin.search') , ['class' => 'btn btn-info col-sm-4', 'name' => 'submitbutton', 'value' => 'search'])!!}
+                {!! Form::submit( trans('admin.inexcel'), ['class' => 'btn btn-success col-sm-4', 'name' => 'submitbutton', 'value' => 'inexcel'])!!}
+                 </div>
                 {{ Form::close() }}
             </div>
         </div>

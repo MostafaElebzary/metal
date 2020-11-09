@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Reciept;
 use App\User;
 use Illuminate\Http\Request;
-use Laravel\Ui\Presets\React;
+use Laravel\Ui\Presets\React; 
+use App\Exports\UsersExport;
+
 
 class UsersStatisticsController extends Controller
 {
@@ -20,9 +22,9 @@ class UsersStatisticsController extends Controller
 
         //
         $users = User::all();
-        $reciept  = Reciept::where('type','قبض')->sum('amount');
-        $branch_id=null;
-         return view('userstatistic.index', \compact('users','reciept','branch_id'));
+        $reciept  = Reciept::where('type', 'قبض')->sum('amount');
+        $branch_id = null;
+        return view('userstatistic.index', \compact('users', 'reciept', 'branch_id'));
     }
 
     /**
@@ -46,18 +48,37 @@ class UsersStatisticsController extends Controller
         $data = $this->validate(
             \request(),
             [
-                'branch_id' => 'required', 
+                'branch_id' => 'required',
             ]
         );
-        $users = User::where('branch_id',$request->branch_id)->get();
-         
-        $usersid[]=null;
-        foreach($users as $key=> $user){
-                $userid[$key] = $user->id;
-        } 
-        $reciept  = Reciept::where('type','قبض')->whereIn('user_id',$userid)->sum('amount');
-        $branch_id = $request->branch_id;
-         return view('userstatistic.index', \compact('users','reciept','branch_id'));
+        switch ($request->submitbutton) {
+
+            case trans('admin.search'):
+                $users = User::where('branch_id', $request->branch_id)->get();
+
+                $usersid[] = null;
+                foreach ($users as $key => $user) {
+                    $userid[$key] = $user->id;
+                }
+                $reciept  = Reciept::where('type', 'قبض')->whereIn('user_id', $userid)->sum('amount');
+                $branch_id = $request->branch_id;
+                return view('userstatistic.index', \compact('users', 'reciept', 'branch_id'));
+                break;
+
+
+
+            case trans('admin.inexcel'):
+               
+                return (new UsersExport($request->branch_id))->download('احصائيات موظفين.xlsx'); 
+                break;
+
+
+            // case trans('admin.outexcel'):
+            //     $users = User::where('branch_id', $request->branch_id)->get()->toArray();
+
+
+            //     break;
+        }
     }
 
     /**
