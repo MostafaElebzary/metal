@@ -259,17 +259,17 @@
 
                                   </li>
 
-                                  
+
                                   <li class="">
                                       <a href="{{url('projecttypes')}}"> {{trans('admin.projectTypeSettings')}}</a>
 
-                                  </li> 
+                                  </li>
 
                                   <li class="">
                                       <a href="{{url('userstatistics')}}"> {{trans('admin.userstatistics')}}</a>
 
                                   </li>
-                                  
+
                                   <li class="">
                                       <a href="{{url('branch')}}"> {{trans('admin.branchs')}}</a>
 
@@ -281,6 +281,23 @@
                               </ul>
                           </li>
                           @endif
+
+                          <li class="has-submenu">
+                              <a href="{{url('transactions')}}"><i class="fa fa-file"></i> {{trans('admin.transactions')}}</a>
+                              <ul class="submenu" style="text-align:right">
+                              <li><a href="{{url('thirdparty')}}"> {{trans('admin.thirdparty')}}</a></li>
+                                  <li>
+                                      <a href="{{url('transactionstypes')}}"> {{trans('admin.transactionstype')}}</a>
+                                    </li>
+                                  <li>
+                                      <a href="{{url('importcreate')}}">{{trans('admin.createimporttransaction')}} </a>
+                                  </li>
+                                  <li>
+                                      <a href="{{url('transactions/create')}}  ">{{trans('admin.createexporttransaction')}} </a>
+                                  </li>
+                                  
+                              </ul>
+                          </li>
 
 
 

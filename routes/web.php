@@ -126,7 +126,25 @@ Route::get('branch/{id}/delete', 'cpanel\BranchController@destroy');
 
 Route::get('select2-autocomplete-ajax', 'cpanel\ReciptsController@dataAjax');
 Route::get('clientdata/{id}', 'cpanel\ReciptsController@clientdata');
+//transactions
+Route::resource('transactionstypes', 'cpanel\transactionsTypesController');
+Route::get('transactionstypes/{id}/delete', 'cpanel\transactionsTypesController@destroy');
 
+Route::resource('transactions', 'cpanel\transactionsController');
+Route::get('transactions/{id}/delete', 'cpanel\transactionsController@destroy');
+
+Route::get('importcreate', 'cpanel\transactionsController@importcreate');
+
+
+Route::post('search', 'cpanel\transactionsController@search');
+Route::get('attachment/{id}', 'cpanel\transactionsController@attachment');
+Route::post('addattachment', 'cpanel\transactionsController@addattachment');
+
+Route::get('attachment/{id}/delete', 'cpanel\transactionsController@delete');
+Route::get('barcode/{id}', 'cpanel\transactionsController@generateBarcode');
+
+Route::resource('thirdparty', 'cpanel\thirdPartyController');
+Route::get('thirdparty/{id}/delete', 'cpanel\thirdPartyController@destroy');
 
 });
 
