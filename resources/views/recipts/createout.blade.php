@@ -4,6 +4,21 @@
 <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" /> -->
 <link href="{{url('css/select2.min.css')}}" rel="stylesheet" />
 
+<style>
+    #parent {
+        /* can be any value */
+        width: 300px;
+        text-align: right;
+        direction: rtl;
+        position: relative;
+    }
+
+    #parent .select2-container--open+.select2-container--open {
+        left: auto;
+        right: 0;
+        width: 100%;
+    }
+</style>
 @endsection
 
 @section('breadcrumb')
@@ -55,12 +70,9 @@
                 <div class="form-group row">
                     <label for="example-text-input" class="col-sm-2">{{trans('admin.client_name')}}</label>
 
-                    <div class="col-sm-10">
-                        <!-- 
-                        {{ Form::select('client_id',App\Client::pluck('name','id'),old('client_id')
-                         ,["class"=>"form-control itemName " ]) }} -->
+                    <div class="col-sm-10" id="parent">
 
-                        <select class="itemName form-control" id="client" style="text-align: right;" name="client_id">
+                        <select class="itemName form-control" id="client" style="text-align-last: right;" name="client_id">
 
 
                         </select>
@@ -124,26 +136,26 @@
     </div>
 </div>
 
-    @endsection
+@endsection
 
-    @section('script')
+@section('script')
 
-    <script>
-        $(function() {
-            $("#amount").on('click', function() {
-                var taxe = document.getElementById('taxe').value;
-                var total = document.getElementById('total').value;
-                var amount = +total + +(total * taxe / 100);
-                document.getElementById('amount').value = amount;
+<script>
+    $(function() {
+        $("#amount").on('click', function() {
+            var taxe = document.getElementById('taxe').value;
+            var total = document.getElementById('total').value;
+            var amount = +total + +(total * taxe / 100);
+            document.getElementById('amount').value = amount;
 
-            });
-            $("#client").on('change', function() {
+        });
+        $("#client").on('change', function() {
             var id = document.getElementById("client").value;
 
             $.ajax({
                 url: "/clientdata/" + id,
                 dataType: "json",
-                success: function(html) { 
+                success: function(html) {
                     $('#check_num').val(html.data_client.check_num);
                     $('#part_number').val(html.data_client.part_number);
                     $('#scheme_number').val(html.data_client.scheme_number);
@@ -151,33 +163,35 @@
                 }
             })
         });
-        });
-    </script>
+    });
+</script>
 
-    <script type="text/javascript">
-        $(function() {
-            $('.itemName').select2({
-                placeholder: '  ابحث باسم العميل او رقم الهويه او رقم الجوال',
-                ajax: {
-                    url: '/select2-autocomplete-ajax',
-                    dataType: 'json',
-                    delay: 100,
-                    processResults: function(data) {
-                        return {
-                            results: $.map(data, function(item) {
-                                return {
-                                    text: item.name,
-                                    id: item.id
-                                }
-                            })
-                        };
-                    },
-                    cache: true
-                }
-            });
+<script type="text/javascript">
+    $(function() {
+        $('.itemName').select2({
+            placeholder: '  ابحث باسم العميل او رقم الهويه او رقم الجوال',
+            dir: 'rtl',
+            dropdownParent: $('#parent'),
+            ajax: {
+                url: '/select2-autocomplete-ajax',
+                dataType: 'json',
+                delay: 1500,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(item) {
+                            return {
+                                text: item.name,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
         });
-    </script>
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    });
+</script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
-    @endsection
+@endsection

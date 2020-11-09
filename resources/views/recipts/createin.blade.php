@@ -18,6 +18,20 @@
 <link href="{{ URL::asset('rtl/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
 @endif
+<style>
+#parent {
+  /* can be any value */
+  width: 300px;
+  text-align: right;
+  direction: rtl;
+  position: relative;
+}
+#parent .select2-container--open + .select2-container--open {
+  left: auto;
+  right: 0;
+  width: 100%;
+}
+</style>
 @endsection
 
 @section('breadcrumb')
@@ -69,9 +83,9 @@
                 <div class="form-group row">
                     <label for="example-text-input" class="col-sm-2">{{trans('admin.client_name')}}</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-sm-10" id="parent">
 
-                        <select id="client" class="itemName form-control" style="text-align: right;" name="client_id">
+                        <select id="client" class="itemName form-control" style="text-align-last: right;" name="client_id">
 
 
                         </select>
@@ -210,6 +224,8 @@
     $(function() {
         $('.itemName').select2({
             placeholder: '  ابحث باسم العميل او رقم الهويه او رقم الجوال',
+            dir:'rtl',
+            dropdownParent: $('#parent'),
             ajax: {
                 url: '/select2-autocomplete-ajax',
                 dataType: 'json',
