@@ -65,8 +65,8 @@
                 </div>
                 <div class="row">             
 
-                {!! Form::submit( trans('admin.search') , ['class' => 'btn btn-info col-sm-4', 'name' => 'submitbutton', 'value' => 'search'])!!}
-                {!! Form::submit( trans('admin.inexcel'), ['class' => 'btn btn-success col-sm-4', 'name' => 'submitbutton', 'value' => 'inexcel'])!!}
+                {!! Form::submit( trans('admin.search') , ['class' => 'btn btn-info col-sm-6', 'name' => 'submitbutton', 'value' => 'search'])!!}
+                {!! Form::submit( trans('admin.inexcel'), ['class' => 'btn btn-success col-sm-6', 'name' => 'submitbutton', 'value' => 'inexcel'])!!}
                  </div>
                 {{ Form::close() }}
             </div>

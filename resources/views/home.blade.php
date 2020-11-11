@@ -162,7 +162,7 @@
             <strong>سندات الصرف</strong>
             </div>
 
-                <table id="datatable" class="table table-striped  table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <table id="datatable2" class="table table-striped  table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead style="font-family: Cairo;font-size: 18px;">
                         <tr style='text-align:center; font-family: Cairo;font-size: 18px;'>
                             <th>#</th>
