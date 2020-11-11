@@ -27,9 +27,7 @@
 <div class="app-content content container-fluid">
     <div class="breadcrumb-wrapper col-xs-12">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                {{trans('admin.websiteControll')}}
-            </li>
+             
             <li class="breadcrumb-item">{{trans('admin.inbox')}}
 
             </li>

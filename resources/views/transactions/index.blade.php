@@ -136,20 +136,25 @@
 
                             <td>
                                 @if($user->type == 'export')
-                                <a class='btn btn-raised btn-success btn-sml' href=" {{url('transactions/'.$user->id.'/edit')}}"><i class="fa fa-edit"></i></a>
+                                <a class='btn btn-raised btn-success btn-sml'data-placement="top"
+                                                       title="  تعديل " href=" {{url('transactions/'.$user->id.'/edit')}}"><i class="fa fa-edit"></i></a>
                                @else
-                                 <a class='btn btn-raised btn-success btn-sml' href=" {{url('transactions/'.$user->id.'/edit')}}"><i class="fa fa-edit"></i></a>
+                                 <a class='btn btn-raised btn-success btn-sml' data-placement="top"
+                                                       title="  تعديل " href=" {{url('transactions/'.$user->id.'/edit')}}"><i class="fa fa-edit"></i></a>
 
                                 @endif
 
-                                <a class='btn btn-raised btn-info btn-sml' href=" {{url('attachment/'.$user->id)}}"><i class="fa fa-file"></i></a>
-                                <a  class='btn btn-raised btn-blue-grey btn-sml' target="_blank" href=" {{url('barcode/'.$user->id)}}"><i class="fa fa-barcode"></i></a>
+                                <a class='btn btn-raised btn-info btn-sml' data-placement="top"
+                                                       title="  الملحقات " href=" {{url('attachment/'.$user->id)}}"><i class="fa fa-file"></i></a>
+                                <a  class='btn btn-raised btn-blue-grey btn-sml' data-placement="top"
+                                                       title="  الباركود " target="_blank" href=" {{url('barcode/'.$user->id)}}"><i class="fa fa-barcode"></i></a>
 
                                 <form method="get" id='delete-form-{{ $user->id }}' action="{{url('transactions/'.$user->id.'/delete')}}" style='display: none;'>
                                     {{csrf_field()}}
                                     <!-- {{method_field('delete')}}   -->
                                 </form>
-                                <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
+                                <button data-placement="top"
+                                                       title="  حذف " onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
                       {
                           event.preventDefault();
                           document.getElementById('delete-form-{{ $user->id }}').submit();

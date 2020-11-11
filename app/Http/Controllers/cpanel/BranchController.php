@@ -15,11 +15,10 @@ class BranchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
 
         $categories = Branch::all();
         return view('branch.index', \compact('categories'));
-
     }
 
     /**
@@ -30,7 +29,6 @@ class BranchController extends Controller
     public function create()
     {
         return view('branch.create');
-
     }
 
     /**
@@ -44,10 +42,10 @@ class BranchController extends Controller
         $data = $this->validate(
             \request(),
             [
-                'name' => 'required|min:6', 
+                'name' => 'required|min:6',
             ]
         );
-       
+
         Branch::create($data);
         session()->flash('success', trans('admin.updatedsuccess'));
         return redirect(url('branch'));
@@ -75,7 +73,6 @@ class BranchController extends Controller
         $category = Branch::where('id', $id)->first();
         //   dd($maindata);
         return view('branch.edit', \compact('category'));
-  
     }
 
     /**
@@ -90,37 +87,49 @@ class BranchController extends Controller
         $data = $this->validate(
             \request(),
             [
-                'name' => 'required|min:6', 
-         
+                'name' => 'required|min:6',
+
             ]
         );
-        
+
         Branch::where('id', $id)->update($data);
         session()->flash('success', trans('admin.updatedsuccess'));
         return redirect(url('branch'));
     }
 
-    public function sendall(){
-        
-        return view('branch.sendall');
+    public function sendall()
+    {
 
+        return view('branch.sendall');
     }
 
-    public function send(Request $request){
+    public function send(Request $request)
+    {
         $data = $this->validate(
             \request(),
             [
-                'message' => 'required|min:6', 
-         
+                'message' => 'required|min:6',
+
             ]
         );
-        $clients = Client::all();
-        foreach($clients as $client){
-        $this->sms($client->phone, $request->message);
+
+        $clients = Client::select('phone')->pluck('phone');
+         if (count($clients) != 0) {
+            
+            foreach ($clients as $chunk) {
+               
+                $this->sms($chunk, $request->message);
+            }
         }
-        session()->flash('success','تم الارسال بنجاح');
+        session()->flash('success', 'تم الارسال بنجاح');
 
         return redirect(url('sendall'));
+
+        // 
+
+
+        // 
+
 
     }
 
@@ -144,8 +153,8 @@ class BranchController extends Controller
      */
     public function destroy($id)
     {
-        if($id == 1){
-            
+        if ($id == 1) {
+
             session()->flash('error', trans('admin.adminnotdeleted'));
             return redirect(url('branch'));
         }

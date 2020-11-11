@@ -120,22 +120,8 @@
 
                 <div class="form-group row">
                     <label for="example-text-input" class="col-sm-2 col-form-label">{{trans('admin.amount')}}</label>
-
                     <div class="col-sm-10">
-                        <input name="total" id="total" class="form-control" type="number" value="{{old('total')}}" placeholder="{{trans('admin.amount')}}" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-sm-2 col-form-label">{{trans('admin.taxepercent')}}</label>
-
-                    <div class="col-sm-10">
-                        <input name="taxepercent" id="taxe" class="form-control" type="number" value="{{old('taxepercent')}}" placeholder="{{trans('admin.taxepercent')}}" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-sm-2 col-form-label">{{trans('admin.totalaftertaxes')}}</label>
-                    <div class="col-sm-10">
-                        <input name="amount" id="amount" class="form-control" type="number" value="{{old('amount')}}" placeholder="{{trans('admin.totalaftertaxes')}}" readonly>
+                        <input name="amount" id="amount" class="form-control" type="number" value="{{old('amount')}}" placeholder="{{trans('admin.amount')}}" required>
                     </div>
                 </div>
 
@@ -190,14 +176,7 @@
 
 @section('script')
 <script>
-    $(function() {
-        $("#amount").on('click', function() {
-            var taxe = document.getElementById('taxe').value;
-            var total = document.getElementById('total').value;
-            var amount = +total + +(total * taxe / 100);
-            document.getElementById('amount').value = amount;
-
-        });
+    $(function() { 
         $("#client").on('change', function() {
             var id = document.getElementById("client").value;
 

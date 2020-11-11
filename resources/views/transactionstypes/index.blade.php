@@ -80,14 +80,16 @@
                                      <td>{{$user->name}}</td>
                                      <td>{{trans('admin.'.$user->status)}} </td>    
                                      <td>{{trans('admin.'.$user->type)}} </td>    
-                                     <td> <a class='btn btn-raised btn-success btn-sml' href=" {{url('transactionstypes/'.$user->id.'/edit')}}" ><i class="fa fa-edit"></i></a> 
+                                     <td> <a class='btn btn-raised btn-success btn-sml'  data-placement="top"
+                                                       title="  تعديل " href=" {{url('transactionstypes/'.$user->id.'/edit')}}" ><i class="fa fa-edit"></i></a> 
                       
                       <form method="get" id='delete-form-{{ $user->id }}' action="{{url('transactionstypes/'.$user->id.'/delete')}}" 
                       style='display: none;'>
                       {{csrf_field()}}
                       <!-- {{method_field('delete')}}   -->
                       </form>
-                      <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
+                      <button  data-placement="top"
+                                                       title="  حذف " onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
                       {
                           event.preventDefault();
                           document.getElementById('delete-form-{{ $user->id }}').submit();

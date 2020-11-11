@@ -18,8 +18,13 @@ class ReciptsController extends Controller
      */
     public function index()
     {
-        //
-        $reciepts = Reciept::all();
+         if(Auth::user()->type == 'admin'){
+            $reciepts = Reciept::all();
+         }else{
+            $reciepts = Reciept::where('user_id',Auth::user()->id)->get();
+
+         }
+  
         return view('recipts.index', \compact('reciepts'));
     }
 

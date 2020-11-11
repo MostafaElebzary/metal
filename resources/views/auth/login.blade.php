@@ -21,7 +21,8 @@ $main_data = App\MainData::first();
 
 
             <div class="p-3">
-                <h3 class="text font-18 m-b-5 text-center">{{$main_data->name_ar}}</h3>
+                <h3 class="text font-22 m-b-8 text-center" style=" font-family: 'Cairo';font-size: 22px;">
+                <b>{{$main_data->name_ar}}</b></h3>
                 <form method="POST" action="{{ route('login') }}" class="form-horizontal m-t-30">
                     @csrf
                     @include('layouts.errors')

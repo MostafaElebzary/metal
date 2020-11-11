@@ -61,21 +61,21 @@
                 <div class="row">
                     <div class="form-group col-sm-6 row">
                         <label for="example-text-input" class="col-sm-2">{{trans('admin.client_name')}}</label>
-
-                        <div class="col-sm-10">
-                            <select id="client" class="itemName form-control" style="text-align: right;" name="client_id"> 
+                        <div class="col-sm-10" id="parent">
+                            <select id="client" class="itemName form-control" style="text-align-last: right;" name="client_id">
                             </select>
-
                         </div>
+
+
                     </div>
                 </div>
                 <div class="row">
-                    {{ Form::submit( trans('admin.search') ,['class'=>'col-6 btn btn-info ']) }} 
+                    {{ Form::submit( trans('admin.search') ,['class'=>'col-6 btn btn-info ']) }}
                     @if($contract !=null)
                     <a class="btn btn-primary col-6 " target="_blank" href="{{url('AccountPrint/'.$contract->id)}}">طباعه </a>
                     @endif
                 </div>
-               
+
 
                 {{ Form::close() }}
             </div>
@@ -106,6 +106,7 @@
                             <th>{{trans('admin.check_num')}}</th>
                             <th>{{trans('admin.phone')}}</th>
                             <th>{{trans('admin.id_num')}}</th>
+                            <th>{{trans('admin.part_number')}}</th>
                         </tr>
                     </thead>
 
@@ -123,6 +124,7 @@
                             <td>{{$contract->check_num}}</td>
                             <td>{{$contract->phone}}</td>
                             <td>{{$contract->id_num}}</td>
+                            <td>{{$contract->part_number}}</td>
 
                         </tr>
 
@@ -237,10 +239,12 @@
     $(function() {
         $('.itemName').select2({
             placeholder: '  ابحث باسم العميل او رقم الهويه او رقم الجوال',
+            dir: 'rtl',
+            dropdownParent: $('#parent'),
             ajax: {
                 url: '/select2-autocomplete-ajax',
                 dataType: 'json',
-                delay: 100,
+                delay: 1500,
                 processResults: function(data) {
                     return {
                         results: $.map(data, function(item) {

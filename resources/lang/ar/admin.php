@@ -23,7 +23,7 @@ return [
     'CategoryName' => 'اسم التصنيف',
     'deletesuccess' => 'تم الحذف بنجاح',
     'editsuccess' => 'تم التعديل بنجاح',
-    'addedsuccess' => 'تم الاإضافة بنجاح',
+    'addedsuccess' => 'تم الإضافة بنجاح',
     'edit_Category' => 'تعديل التصنيف',
     'add_Category' => 'اضافه  تصنيف',
     // 
@@ -329,7 +329,7 @@ return [
     'all' => 'صادر و وارد',
     'importandexport' => 'صادر و وارد',
     'edittransactionstypes' => 'تعديل بيانات المعامله',
-    'thirdparty' => 'الجهات الخارجيه',
+    'thirdparty' => 'اعدادات الجهات الخارجيه ',
     'thirdpartyname' => 'اسم الجهه',
     'address' => 'العنوان',
     'thirdpartytype' => 'نوع الجهه',
@@ -367,7 +367,7 @@ return [
     'attachmentsnumber'=>'مرفقات المعامله رقم ',
     
     'urgentandsecret' => 'المعاملة عاجلة وسرية ',
-    'notransactionstatus' => 'لا يوجد حاله',
+    'notransactionstatus' => 'المعاملة عادية',
     'file'=>'المرفق',
     'editimporttransaction'=>'تعديل معامله وارد',
     'barcode'=>'طباعه الباركود',

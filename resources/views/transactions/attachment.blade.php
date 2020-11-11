@@ -109,7 +109,8 @@
                                     {{csrf_field()}}
                                     <!-- {{method_field('delete')}}   -->
                                 </form>
-                                <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
+                                <button data-placement="top"
+                                                       title="  حذف " onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
                       {
                           event.preventDefault();
                           document.getElementById('delete-form-{{ $user->id }}').submit();
