@@ -75,7 +75,7 @@
                                 <i class="fa fa-instagram"></i>
                             </a>
                             <!--<a href="{{$maindata->whatsapp}}">-->
-                                <a href="https://wa.me/{{$maindata->whatsapp}}" target="_blank">
+                            <a href="https://wa.me/{{$maindata->whatsapp}}" target="_blank">
 
                                 <i class="fa fa-whatsapp"></i>
                             </a>
@@ -96,8 +96,8 @@
         </div>
         <!-- Top Bar -->
         <!-- Sticky Navbar -->
-         <header id="sticker" class="sticky-navigation dark-header">
-             <!-- Sticky Menu -->
+        <header id="sticker" class="sticky-navigation dark-header">
+            <!-- Sticky Menu -->
             <div class="sticky-menu relative">
                 <!-- navbar -->
                 <div class="navbar navbar-default navbar-bg-light" role="navigation">
@@ -112,10 +112,14 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span></button>
                                     <!-- Logo -->
-                                    <a class="navbar-brand" href="#">
-                                        <img class="site_logo" alt="Site Logo" src="{{url('uploads/'. $maindata->logo)}}" />
-                                    </a></div>
-                                <!-- Navbar Collapse -->
+                                    <!-- //ظبطلى الارتفاع بتاع الصورة يبقى اصغر شويه لانه بيزيد مع  على حسب الصورة المرفوعه لو طويله بيطولها
+                                وهتلاقينى فاتحلك الصفحه اللى برفع منها الصور عشان تجرب صور طويله وهتلاقى صورة كبيرة على الديسكتوب -->
+ 
+                                        <a class="navbar-brand" href="#">
+                                            <img class="site_logo" style="height: 60px;width:130px" alt="Site Logo" src="{{url('uploads/'. $maindata->logo)}}" />
+
+                                        </a></div>
+                                 <!-- Navbar Collapse -->
                                 <div id="topnav" class="navbar-collapse collapse">
                                     <!-- nav -->
                                     <ul class="nav navbar-nav">
@@ -131,13 +135,13 @@
                                         <li>
                                             <a href="#about-us" class="scroll">{{trans('admin.About')}}</a>
                                         </li>
-                                        
+
                                         <li>
                                             <a href="#works" class="scroll">{{trans('admin.featuredwork')}}</a>
                                         </li>
-                                         <li>
+                                        <li>
                                             <a href="#latest-news" class="scroll">{{trans('admin.ourlatestnews')}}</a>
-                                        </li>  
+                                        </li>
                                         <li>
                                             <a href="#contact-us" class="scroll">{{trans('admin.Contactus')}}</a>
                                         </li>
@@ -265,10 +269,10 @@
                 <div class="row white">
                     <div class="owl-carousel navigation-1 opacity text-left" data-pagination="false" data-items="3" data-autoplay="true" data-navigation="true">
                         @foreach($services as $service)
-                        <div class="col-sm-6 col-md-4 col-xs-12" >
+                        <div class="col-sm-6 col-md-4 col-xs-12">
                             <p class="text-center">
-                                 <img src="{{url('uploads/services/'.$service->image)}}" width="420px" height="280px" alt="" />
-                             </p>
+                                <img src="{{url('uploads/services/'.$service->image)}}" style="height: 280px;width:420px"  alt="" />
+                            </p>
                             @if(session('lang')=='en')
 
                             <h3>
@@ -428,7 +432,7 @@
                             $product_image = App\ProductDetail::where('product_id',$work->id)->first();
                             @endphp
                             @if($product_image !=null)
-                            <img src="{{url('uploads/products/'.$product_image->image)}}" width="400" height="273" alt="Recent Work" class="img-responsive" />
+                            <img src="{{url('uploads/products/'.$product_image->image)}}" style="height: 273px;width:400px"   alt="Recent Work" class="img-responsive" />
                             @endif
                             <div class="figcaption">
                                 <!-- Image Popup-->
@@ -534,7 +538,7 @@
 
                         <div class="col-sm-6 col-md-4 col-xs-12">
                             <p class="text-center">
-                                <img id="newImg" src="{{url('uploads/latestnews/'.$latest->image)}}" width="420" height="280" alt="" />
+                                <img id="newImg" src="{{url('uploads/latestnews/'.$latest->image)}}" style="height: 280px;width:420px"  alt="latest news" />
                             </p>
                             @if(session('lang')=='en')
                             <h3>
@@ -602,7 +606,7 @@
                     <div class="col-md-12 text-center">
                         <div class="owl-carousel" data-pagination="false" data-items="6" data-autoplay="true" data-navigation="false">
                             @foreach($parteners as $partener)
-                            <a >
+                            <a>
                                 <img src="{{url('uploads/parteners/'.$partener->image)}}" width="170" height="90" alt="" />
                                 <!-- <img src="{{url('uploads/parteners/'.$partener->image)}}" width="170" height="90" alt="" /> -->
                             </a>
@@ -656,7 +660,7 @@
                     @else
                     <div class="col-md-6">
                         <div class="map-section">
-<!-- here map lng lat -->
+                            <!-- here map lng lat -->
                             <div class="map-canvas" data-zoom="13" data-lat="{{$map->lat}}" data-lng="{{$map->lng}}" data-type="roadmap" data-title="{{$maindata->name_ar}}" data-content="{{$maindata->name_ar}}&lt;br&gt; Contact: {{$maindata->contact_number}}&lt;br&gt; &lt;a href=&#39;mailto:{{$maindata->email}}&#39;&gt;{{$maindata->email}}&lt;/a&gt;" style="height: 350px;"></div>
                         </div>
                     </div>
@@ -717,7 +721,7 @@
                                     <li>
                                         @if(session('lang')=='en')
                                         <a href="#">
-                                        <p class="text-center">{{$mainservice->name_en}}</p>
+                                            <p class="text-center">{{$mainservice->name_en}}</p>
                                         </a>
                                         @else
                                         <a href="#">
@@ -746,7 +750,7 @@
                                 </ul>
                                 <!-- Count -->
 
-                             
+
                                 <div class="footer-count text-center">
                                     <p class="count-number" data-count="{{$maindata->finishedproject}}">
                                         <span class="counter"></span> : {{trans('admin.finishedprojects')}} </p>
