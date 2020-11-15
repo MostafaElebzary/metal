@@ -58,9 +58,9 @@ class UsersStatisticsController extends Controller
 
                 $usersid[] = null;
                 foreach ($users as $key => $user) {
-                    $userid[$key] = $user->id;
+                    $usersid[$key] = $user->id;
                 }
-                $reciept  = Reciept::where('type', 'قبض')->whereIn('user_id', $userid)->sum('amount');
+                $reciept  = Reciept::where('type', 'قبض')->whereIn('user_id', $usersid)->sum('amount');
                 $branch_id = $request->branch_id;
                 return view('userstatistic.index', \compact('users', 'reciept', 'branch_id'));
                 break;

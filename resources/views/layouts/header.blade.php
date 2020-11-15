@@ -111,15 +111,8 @@
                           @php
                           $user_id=auth()->user()->id;
                           $permission =App\Permission::where('user_id',$user_id)->first();
-                          if($permission->inbox == 'yes'){
                           @endphp
-                          <li class="has-submenu">
-                              <a href="{{url('inbox')}}"><i class="fa fa-inbox"></i> {{trans('admin.inbox')}}</a>
 
-                          </li>
-                          @php
-                          }
-                          @endphp
 
 
                           @if($permission->addclient =="yes" ||
@@ -274,6 +267,13 @@
                                       <a href="{{url('branch')}}"> {{trans('admin.branchs')}}</a>
 
                                   </li>
+                                  @if($permission->inbox == 'yes')
+
+                                  <li class="">
+                                      <a href="{{url('inbox')}}">  {{trans('admin.inbox')}}</a>
+
+                                  </li>
+                                  @endif
                                   <li>
                                   <a href="{{url('thirdparty')}}"> {{trans('admin.thirdparty')}}</a>
                                   </li>

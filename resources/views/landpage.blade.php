@@ -10,15 +10,16 @@
     @endif
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="keywords" content="construction" />
-    <meta name="author" content="uramit" />
+    <meta name="author" content="emaarsrh" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{url('uploads/'. $maindata->logo)}}" />
     <!-- Font -->
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:300,400,500,700,400italic,700italic' />
-    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css' />
-    <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Arimo:300,400,500,700,400italic,700italic' />
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css' />
 
+    <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css' rel='stylesheet'>
     <!-- Font Awesome Icons -->
     <link href="{{ url('front/css/font-awesome.min.css')}}" rel='stylesheet' type='text/css' />
     <!-- Bootstrap core CSS -->
@@ -112,8 +113,9 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span></button>
                                     <!-- Logo -->
-                                    <a class="navbar-brand" href="#">
-                                        <img class="site_logo" alt="Site Logo" src="{{url('uploads/'. $maindata->logo)}}" />
+                                    <a class="navbar-brand" href="#" >
+                                        <img class="site_logo" style="height: 60px;width:130px" alt="Site Logo" height="50px" src="{{url('uploads/'. $maindata->logo)}}" />
+
                                     </a></div>
                                 <!-- Navbar Collapse -->
                                 <div id="topnav" class="navbar-collapse collapse">
@@ -131,13 +133,11 @@
                                         <li>
                                             <a href="#about-us" class="scroll">{{trans('admin.About')}}</a>
                                         </li>
-                                        
+
                                         <li>
                                             <a href="#works" class="scroll">{{trans('admin.featuredwork')}}</a>
                                         </li>
-                                         <li>
-                                            <a href="#latest-news" class="scroll">{{trans('admin.ourlatestnews')}}</a>
-                                        </li>  
+
                                         <li>
                                             <a href="#contact-us" class="scroll">{{trans('admin.Contactus')}}</a>
                                         </li>
@@ -219,6 +219,7 @@
                             <div class="mask-top">
                                 <!-- Icon -->
                                 <i class="{{$mainservice->icon}}"></i>
+{{--                                <img src="{{url($mainservice->icon)}}" width="25px" height="25px">--}}
                                 @if(session('lang')=='en')
 
                                 <!-- Title -->
@@ -267,7 +268,7 @@
                         @foreach($services as $service)
                         <div class="col-sm-6 col-md-4 col-xs-12" >
                             <p class="text-center">
-                                 <img src="{{url('uploads/services/'.$service->image)}}" width="420px" height="280px" alt="" />
+                                 <img src="{{url('uploads/services/'.$service->image)}}"  style="height: 280px;width:420px"  alt="" />
                              </p>
                             @if(session('lang')=='en')
 
@@ -428,7 +429,7 @@
                             $product_image = App\ProductDetail::where('product_id',$work->id)->first();
                             @endphp
                             @if($product_image !=null)
-                            <img src="{{url('uploads/products/'.$product_image->image)}}" width="400" height="273" alt="Recent Work" class="img-responsive" />
+                            <img src="{{url('uploads/products/'.$product_image->image)}}" style="height: 273px;width:400px"  alt="Recent Work" class="img-responsive" />
                             @endif
                             <div class="figcaption">
                                 <!-- Image Popup-->
@@ -523,37 +524,6 @@
         </section>
         <!-- fun-factor done -->
         <section id="latest-news" class="page-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2 class="title">{{trans('admin.ourlatestnews')}}</h2>
-                </div>
-                <div class="row">
-                    <div class="owl-carousel navigation-1 opacity text-left" data-pagination="false" data-items="3" data-autoplay="true" data-navigation="true">
-
-                        @foreach($latestnews as $latest)
-
-                        <div class="col-sm-6 col-md-4 col-xs-12">
-                            <p class="text-center">
-                                <img id="newImg" src="{{url('uploads/latestnews/'.$latest->image)}}" width="420" height="280" alt="" />
-                            </p>
-                            @if(session('lang')=='en')
-                            <h3>
-                                {{$latest->title_en}}
-                            </h3>
-                            <p>{{$latest->desc_en}}</p>
-                            @else
-                            <h3 style="text-align: right;">
-                                {{$latest->title_ar}}
-                            </h3>
-                            <p style="text-align: right;">{{$latest->desc_ar}}</p>
-                            @endif
-                        </div>
-                        @endforeach
-
-
-                    </div>
-                </div>
-            </div>
         </section>
         <!-- news -->
         <section id="testimonials" class="page-section transparent">
@@ -746,7 +716,7 @@
                                 </ul>
                                 <!-- Count -->
 
-                             
+
                                 <div class="footer-count text-center">
                                     <p class="count-number" data-count="{{$maindata->finishedproject}}">
                                         <span class="counter"></span> : {{trans('admin.finishedprojects')}} </p>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('css')
- 
+
 @endsection
 
 @section('breadcrumb')
@@ -18,7 +18,7 @@
             <li class="breadcrumb-item">
                 {{trans('admin.mainservices')}}
             </li>
-            
+
             <li class="breadcrumb-item">
                 {{trans('admin.editmainservice')}}
             </li>
@@ -67,7 +67,7 @@
                                 <input name="name_en" class="form-control" type="text" value="{{$mainservice->name_en}}" required>
                             </div>
                         </div>
-  
+
 
                     <div class="form-group row">
                             <label for="example-text-input" class="col-sm-2">{{trans('admin.descr_ar')}}</label>
@@ -86,11 +86,11 @@
                             </div>
                         </div>
 
-                        
+
 
                 {{ Form::submit( trans('admin.edit') ,['class'=>'btn btn-info btn-block']) }}
                     </div>
-                     
+
                 </div>
 
 

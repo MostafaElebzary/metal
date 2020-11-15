@@ -60,7 +60,7 @@
                             <label for="example-text-input" class="col-sm-3">{{trans('admin.check_num')}}</label>
 
                             <div class="col-sm-9">
-                                <input name="check_num" class="form-control" type="number" value="{{old('check_num')}}" placeholder="{{trans('admin.check_num')}}" required>
+                                <input name="check_num" class="form-control" type="text" value="{{old('check_num')}}" placeholder="{{trans('admin.check_num')}}" required>
                             </div>
                         </div>
 

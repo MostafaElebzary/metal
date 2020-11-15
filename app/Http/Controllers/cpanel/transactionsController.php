@@ -83,14 +83,14 @@ class transactionsController extends Controller
                     $data['number'] = $number->number + 1;
 
                 }
-        
+
                 $user = Transaction::create($data);
                 if ($request['file'] != null) {
                     // This is Image Information ...
                     foreach ($request['file'] as $image) {
                         # code...
                         $input['file'] = $this->MoveImage($image);
-                        $input['name']    = $image->getClientOriginalName();  
+                        $input['name']    = $image->getClientOriginalName();
                         $input['transaction_id'] = $user->id;
                         TransactionsAttachment::create($input);
                     }
@@ -111,13 +111,13 @@ class transactionsController extends Controller
 
                 }
                 $transactionstypes['id'] = null;
-        
-        
+
+
                 return view('transactions.print', \compact('transactionstypes'));
                 break;
         }
 
-       
+
     }
 
     public function MoveImage($request_file)
@@ -204,25 +204,29 @@ class transactionsController extends Controller
     public function search(Request $request)
     {
         $transactions = null;
-        if(Auth::user()->type == "admin"){
+        if ($request->number != null) {
+            $transactions = Transaction::where('number', $request->number)->get();
+        } else {
+            if (Auth::user()->type == "admin") {
 
-        if ($request->user == "all" && $request->type == "all") {
+                if ($request->user == "all" && $request->type == "all") {
 
-            $transactions = Transaction::all();
-        } elseif ($request->user != "all" && $request->type != "all") {
-            $transactions = Transaction::where('user_id', $request->user)->where('type', $request->type)->get();
-        } elseif ($request->user == "all" && $request->type != "all") {
-            $transactions = Transaction::where('type', $request->type)->get();
-        } elseif ($request->user != "all" && $request->type == "all") {
-            $transactions = Transaction::where('user_id', $request->user)->get();
+                    $transactions = Transaction::all();
+                } elseif ($request->user != "all" && $request->type != "all") {
+                    $transactions = Transaction::where('user_id', $request->user)->where('type', $request->type)->get();
+                } elseif ($request->user == "all" && $request->type != "all") {
+                    $transactions = Transaction::where('type', $request->type)->get();
+                } elseif ($request->user != "all" && $request->type == "all") {
+                    $transactions = Transaction::where('user_id', $request->user)->get();
+                }
+            } else {
+                if ($request->type == "all") {
+                    $transactions = Transaction::where('user_id', Auth::user()->id)->get();
+                } elseif ($request->type != "all") {
+                    $transactions = Transaction::where('user_id', Auth::user()->id)->where('type', $request->type)->get();
+                }
+            }
         }
-    }else{
-        if ( $request->type == "all") {
-            $transactions = Transaction::where('user_id', Auth::user()->id)->get();
-        } elseif ( $request->type != "all") {
-            $transactions = Transaction::where('user_id', Auth::user()->id)->where('type', $request->type)->get();
-        }  
-    }
         return view('transactions.index', \compact('transactions'));
     }
 
@@ -266,7 +270,7 @@ class transactionsController extends Controller
         foreach ($request['file'] as $image) {
             # code...
             $input['file'] = $this->MoveImage($image);
-            $input['name']    = $image->getClientOriginalName();  
+            $input['name']    = $image->getClientOriginalName();
             $input['transaction_id'] = $request->transaction_id;
             TransactionsAttachment::create($input);
         }
@@ -294,5 +298,5 @@ class transactionsController extends Controller
     }
 
 
-     
+
 }

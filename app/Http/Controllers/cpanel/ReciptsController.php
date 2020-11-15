@@ -24,7 +24,7 @@ class ReciptsController extends Controller
             $reciepts = Reciept::where('user_id',Auth::user()->id)->get();
 
          }
-  
+
         return view('recipts.index', \compact('reciepts'));
     }
 
@@ -64,10 +64,10 @@ class ReciptsController extends Controller
     {
         $data_client = Client::where('id', $id)->first();
         $data_client_reciept = Reciept::where('client_id', $id)->sum('amount');
- 
+
         return response()->json(['data_client' => $data_client,'data_client_reciept' => $data_client_reciept]);
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -95,25 +95,25 @@ class ReciptsController extends Controller
                 'client_id' => 'required',
                 'type' => 'required',
                 'date' => 'required',
-                'pay_type' => 'required', 
-                'taxepercent' => 'required',
-                'total' => 'required', 
+                'pay_type' => 'required',
+                'taxepercent' => 'sometimes|nullable',
+                'total' => 'sometimes|nullable',
                 'amount' => 'required',
                 'desc' => 'required',
             ]
-        ); 
+        );
         $data['user_id'] = Auth::user()->id;
         $reciept = Reciept::create($data);
         if($request->type == 'قبض'){
             if($request->sendsms == 'yes'){
                 $message = 'تم الاستلام من المكرم '.$reciept->getClient->name.' مبلغ وقدرة  '.$reciept->amount.'  ريال سعودي وذلك لسند قبض رقم '.$reciept->id;
-               
+
                 $this->sms($request->phone, $message);
             }
         }
         session()->flash('success', trans('admin.addedsuccess'));
         return redirect(url('recipts/' . $reciept->id));
- 
+
     }
 
     /**
@@ -159,10 +159,16 @@ class ReciptsController extends Controller
 
     public function search(Request $request)
     {
-        $reciepts =   Reciept::whereBetween('date', array($request->fromdate, $request->todate))
-            ->where('type', $request->type)->where('pay_type', $request->pay_type)
-            ->where('client_id', $request->client_id)->get();
 
+        if($request->type == 'all'){
+            $reciepts =   Reciept::whereBetween('date', array($request->fromdate, $request->todate))
+                ->where('pay_type', $request->pay_type)
+                ->where('client_id', $request->client_id)->get();
+        }else{
+            $reciepts =   Reciept::whereBetween('date', array($request->fromdate, $request->todate))
+                ->where('type', $request->type)->where('pay_type', $request->pay_type)
+                ->where('client_id', $request->client_id)->get();
+        }
         return view('recipts.index', \compact('reciepts'));
     }
 

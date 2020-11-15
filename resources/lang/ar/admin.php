@@ -8,6 +8,7 @@ return [
     'deleteConfirmation' => 'هل انت متأكد؟',
     'Profile' => 'الصفحه الشخصية',
     'Logout' => 'تسجيل خروج',
+    'editbranch'=>'تعديل الفرع',
     'Clients' => 'العملاء',
     'add_Clients' => 'إضافه عميل',
     'category' => 'التصنيف',

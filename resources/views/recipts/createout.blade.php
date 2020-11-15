@@ -124,7 +124,7 @@
             </thead>
             <tbody>
                 <tr style='text-align:center'>
-                    <td><input name="check_num" id="check_num" class="form-control" type="number" value="{{old('check_num')}}" placeholder="{{trans('admin.check_num')}}" readonly>
+                    <td><input name="check_num" id="check_num" class="form-control" type="text" value="{{old('check_num')}}" placeholder="{{trans('admin.check_num')}}" readonly>
                     </td>
                     <td>
                         <input name="part_number" id="part_number" class="form-control" type="text" value="{{old('part_number')}}" placeholder="{{trans('admin.part_number')}}" readonly>

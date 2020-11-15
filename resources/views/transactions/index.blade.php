@@ -71,14 +71,14 @@
                                 @php
                                 $emp = App\User::all();
                                 @endphp
-                          
+
                                 @foreach($emp as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
 
                                 @endforeach
                             </select>
                         </div>
-                      
+
 
                         <div class="col-6">
                             {!! Form::select('type', ['all'=>(trans('admin.importandexport')),'export'=>(trans('admin.export')) ,'import'=>(trans('admin.import'))] , old('type'), ['class'=>'form-control',null]) !!}
@@ -90,6 +90,13 @@
 
                         </div>
                         @endif
+
+                        <br>
+                        <br>
+                        <div class="col-12">
+                            <input name="number" class="form-control" type="number" value="" placeholder="رقم المعامله" >
+
+                        </div>
                     </div>
                     <br>
 
@@ -159,9 +166,9 @@
                           event.preventDefault();
                           document.getElementById('delete-form-{{ $user->id }}').submit();
                       }else {
-                            event.preventDefault(); 
+                            event.preventDefault();
                       }
-                      
+
                       " class='btn btn-raised btn-danger btn-sml' href=" "><i class="fa fa-trash" aria-hidden='true'>
                                     </i>
 

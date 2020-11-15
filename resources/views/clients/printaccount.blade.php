@@ -58,7 +58,7 @@
 
                             <div style=" padding-top:10px;font-family: 'Cairo';font-size: 22px;text-align:right" class="col-sm-7">
 
-                                <p><strong>{{$maindata->name_ar}}</strong></p>
+{{--                                <p><strong>{{$maindata->name_ar}}</strong></p>--}}
 
                             </div>
                         </div>
@@ -84,6 +84,7 @@
                     <table id="datatable2" class="table table-striped  table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead style="font-family: Cairo;font-size: 18px;">
                             <tr style='text-align:center; font-family: Cairo;font-size: 18px;'>
+                                <th>{{trans('admin.part_number')}}</th>
 
 
                                 <th>{{trans('admin.check_num')}}</th>
@@ -91,6 +92,7 @@
                                 <th>{{trans('admin.id_num')}}</th>
                                 <th>{{trans('admin.contractdate')}}</th>
                                 <th>{{trans('admin.contracttotal')}}</th>
+
 
                                 <th>#</th>
                             </tr>
@@ -104,6 +106,8 @@
                             @if($contract != null)
 
                             <tr style='text-align:center'>
+                                <td>{{$contract->part_number}}</td>
+
                                 <td>{{$contract->check_num}}</td>
                                 <td>{{$contract->phone}}</td>
                                 <td>{{$contract->id_num}}</td>

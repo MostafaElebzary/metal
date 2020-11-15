@@ -71,7 +71,7 @@
                     <div class="form-group row col-sm-6">
                         <label for="example-text-input" class="col-sm-2 col-form-label">{{trans('admin.reciepttype')}}</label>
                         <div class="col-sm-10">
-                            {{ Form::select('type', array('قبض'=>'قبض','صرف'=>'صرف'),old('type')
+                            {{ Form::select('type', array('all'=>'كلاهما','قبض'=>'قبض','صرف'=>'صرف'),old('type')
                          ,["class"=>"form-control "]) }}
                         </div>
                     </div>
@@ -157,9 +157,9 @@
                           event.preventDefault();
                           document.getElementById('delete-form-{{ $user->id }}').submit();
                       }else {
-                            event.preventDefault(); 
+                            event.preventDefault();
                       }
-                      
+
                       " class='btn btn-raised btn-danger btn-sml' href=" "><i class="fa fa-trash" aria-hidden='true'>
                                     </i>
                                 </button>

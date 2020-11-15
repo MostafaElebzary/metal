@@ -39,19 +39,19 @@
                 <img src="data:image/png;base64,{{DNS2D::getBarcodePNG($id, 'QRCODE',6,6)}}" alt="barcode" />
 
             </div>
-            <div class="col-sm-9" style="text-align:center">
+            <div class="col-sm-10" style="text-align:center">
 
-                <img src="{{url('uploads/'. $maindata->logo)}}" width="120px" height="120px">
+                <img src="{{url('uploads/'. $maindata->logo)}}" width="200px" height="200px">
 
             </div>
 
 
             <div style=" padding-top:10px;font-family: 'Cairo';font-size: 22px;text-align:right" class="col-sm-7">
 
-                <p><strong>{{$maindata->name_ar}}</strong></p>
+{{--                <p><strong>{{$maindata->name_ar}}</strong></p>--}}
 
             </div>
-            <div class="col-sm-7 form-group" style=" padding-top:0px;font-family: 'Cairo';font-size: 20px;text-align:right">
+            <div class="col-sm-8 form-group" style=" font-family: 'Cairo';font-size: 20px;text-align:right">
 
                 <strong>سند {{$reciept->type}}</strong> / {{$reciept->id}}
 
@@ -132,7 +132,7 @@
                     <strong> رقم القطعه </strong> / {{$data_client->part_number}}
                 </div>
             </div>
-          
+
 
             @endif
 
@@ -140,22 +140,6 @@
     </div>
 
     <div style="text-align:center; padding-top:100px;" class="row">
-        <div class="col-sm-4 form-group" style="text-align:right;padding-right:100px">
-            <div>
-                <strong><a> توقيع المدير </a></strong>
-            </div>
-        </div>
-        <div class="col-sm-4 form-group" style="text-align:right;padding-right:100px">
-            <div>
-                <strong><a> توقيع المستلم </a></strong>
-            </div>
-        </div>
-
-        <div class="col-sm-4 form-group" style="text-align:right;padding-right:150px">
-            <div>
-                <strong><a> توقيع المحاسب </a></strong>
-            </div>
-        </div>
 
         <div style="padding-top: 200px;"></div>
 

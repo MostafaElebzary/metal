@@ -47,7 +47,7 @@ class BranchController extends Controller
         );
 
         Branch::create($data);
-        session()->flash('success', trans('admin.updatedsuccess'));
+        session()->flash('success', trans('admin.addedsuccess'));
         return redirect(url('branch'));
     }
 
@@ -109,18 +109,20 @@ class BranchController extends Controller
             \request(),
             [
                 'message' => 'required|min:6',
-
             ]
         );
 
         $clients = Client::select('phone')->pluck('phone');
-         if (count($clients) != 0) {
+          if (count($clients) != 0) {
             
-            foreach ($clients as $chunk) {
-               
-                $this->sms($chunk, $request->message);
+            foreach ($clients as $client) {
+                $output[] = $client;
             }
+           $numbers = implode(', ', $output);
+            $this->sms($numbers, $request->message);
+
         }
+
         session()->flash('success', 'تم الارسال بنجاح');
 
         return redirect(url('sendall'));
