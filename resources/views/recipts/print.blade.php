@@ -75,10 +75,18 @@
             <div class="col-sm-6 form-group" style="text-align:right;padding-right:50px">
                 <div>
                     @if($reciept->type == 'صرف')
-                    <strong>استلمت انا </strong>
+                        <strong>استلمت انا </strong>
                     @else
-                    <strong> استلمنا من المكرم </strong>
+                        <strong> استلمنا من المكرم </strong>
                     @endif
+                    / {{$reciept->getClient->getMainClient->name}}
+                </div>
+            </div>
+            <div class="col-sm-6 form-group" style="text-align:right;padding-right:50px">
+                <div>
+
+                    <strong> وذلك لمشروع </strong>
+
                     / {{$reciept->getClient->name}}
                 </div>
             </div>
@@ -87,8 +95,11 @@
                     <strong> بتاريخ </strong> / {{date('d-m-Y', strtotime($reciept->date))}}
                 </div>
             </div>
+            <div class="col-sm-6 form-group" style="text-align:right;padding-right:50px">
+                <div>
 
-
+                </div>
+            </div>
 
             <div class="col-sm-6 form-group" style="text-align:right;padding-right:50px">
                 <div>

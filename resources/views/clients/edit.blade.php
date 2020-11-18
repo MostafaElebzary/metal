@@ -39,6 +39,13 @@
 
 
                     <div class="panel" style='text-align:right'>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-3">{{trans('admin.mainclient_name')}}</label>
+
+                            <div class="col-sm-9">
+                                <input name="name" class="form-control" type="text" value="{{$client_data->getMainClient->name}}" placeholder="{{trans('admin.mainclient_name')}}" readonly>
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-3">{{trans('admin.client_name')}}</label>

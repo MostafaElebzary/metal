@@ -57,6 +57,7 @@
                     <thead style="font-family: Cairo;font-size: 18px;">
                         <tr style='text-align:center; font-family: Cairo;font-size: 18px;'>
                             <th>#</th>
+                            <th>{{trans('admin.mainclient_name')}}</th>
                             <th>{{trans('admin.client_name')}}</th>
                             <th>{{trans('admin.id_num')}}</th>
                             <th>{{trans('admin.phone')}}</th>
@@ -73,6 +74,7 @@
 
                         <tr style='text-align:center'>
                             <td>{{$i}}</td>
+                            <td>{{$user->getMainClient->name}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->id_num}}</td>
                             <td>{{$user->phone}}</td>

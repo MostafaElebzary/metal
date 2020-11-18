@@ -58,14 +58,31 @@
 
 
 
-                <div class="row">
-                    <div class="form-group col-sm-6 row">
-                        <label for="example-text-input" class="col-sm-2">{{trans('admin.client_name')}}</label>
-                        <div class="col-sm-10" id="parent">
-                            <select id="client" class="itemName form-control" style="text-align-last: right;" name="client_id">
-                            </select>
-                        </div>
 
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-sm-2">{{trans('admin.mainclient_name')}}</label>
+
+                    <div class="col-sm-10" id="parent">
+
+                        <select id="mainclient" class="itemName form-control" style="text-align-last: right;"
+                                name="mainclient_id">
+
+
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-sm-2">{{trans('admin.client_name')}}</label>
+
+                    <div class="col-sm-10" id="parent">
+
+                        <select id="client" class=" form-control" style="text-align-last: right;"
+                                name="client_id">
+
+
+                        </select>
 
                     </div>
                 </div>
@@ -90,7 +107,7 @@
     <div class="col-12">
         <div class="card m-b-20">
             <div class="card-header" style="text-align: center;">
-                بيانات التعاقد للعميل
+                بيانات التعاقد للمشروع
                 @if($contract !=null)
                 {{$contract->name}}
                 @endif
@@ -101,6 +118,8 @@
                     <thead style="font-family: Cairo;font-size: 18px;">
                         <tr style='text-align:center; font-family: Cairo;font-size: 18px;'>
                             <th>#</th>
+                            <th>{{trans('admin.mainclient_name')}}</th>
+                            <th>{{trans('admin.client_name')}}</th>
                             <th>{{trans('admin.contractdate')}}</th>
                             <th>{{trans('admin.contracttotal')}}</th>
                             <th>{{trans('admin.check_num')}}</th>
@@ -119,6 +138,8 @@
 
                         <tr style='text-align:center'>
                             <td>{{$i}}</td>
+                            <td>{{$contract->getMainClient->name}}</td>
+                            <td>{{$contract->name}}</td>
                             <td>{{$contract->check_date}}</td>
                             <td>{{$contract->amount}}</td>
                             <td>{{$contract->check_num}}</td>
@@ -259,12 +280,35 @@
             }
         });
 
+            $("#mainclient").on('change', function () {
+                var id = document.getElementById("mainclient").value;
+
+
+                $.ajax({
+                    url: "/clientdata/" + id,
+                    dataType: "json",
+                    success: function (html) {
+                        $('#client').empty();
+                        $("#client").append('<option>--اختر مشروع--</option>');
+                        if(html)
+                        {
+                            $.each(html.data_client,function(key,value){
+                                $('#client').append($("<option/>", {
+                                    value: value,
+                                    text: key
+                                }));
+                            });
+
+                        }
+
+                    }
+                })
+            });
     });
 </script>
 <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-</script>
-<!-- Required datatable js -->
+ <!-- Required datatable js -->
 <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <!-- Buttons examples -->

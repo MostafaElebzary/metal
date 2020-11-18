@@ -42,6 +42,17 @@
 
 
                         <div class="panel" style='text-align:right'>
+                            <div class="form-group row">
+                                <label for="example-text-input"
+                                       class="col-sm-3">{{trans('admin.mainclient_name')}}</label>
+
+                                <div class="col-sm-9">
+
+                                    {{ Form::select('mainclient_id',App\MainClient::pluck('name','id'),old('mainclient_id')
+                             ,["class"=>"form-control mainclient_id " ]) }}
+
+                                </div>
+                            </div>
 
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-sm-3">{{trans('admin.client_name')}}</label>
@@ -52,14 +63,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-sm-3">{{trans('admin.id_num')}}</label>
-
-                                <div class="col-sm-9">
-                                    <input name="id_num" class="form-control" type="number" value="{{old('id_num')}}"
-                                           placeholder="{{trans('admin.id_num')}}" required>
-                                </div>
-                            </div>
 
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-sm-3">{{trans('admin.check_num')}}</label>
@@ -75,10 +78,8 @@
                                 <label for="example-text-input" class="col-sm-3">{{trans('admin.check_date')}}</label>
 
                                 <div class="col-sm-9">
-{{--                                    <input name="check_date" class="form-control" type="date"--}}
-{{--                                           value="{{old('check_date')}}" placeholder="{{trans('admin.check_date')}}"--}}
-{{--                                           required>--}}
-                                     <input id="hijri-picker" type="text" class="form-control" />
+                                    <input name="check_date" id="hijri-picker" value="{{old('check_date')}}" type="text"
+                                           placeholder="{{trans('admin.check_date')}}" class="form-control" required/>
 
                                 </div>
                             </div>
@@ -146,6 +147,14 @@
 
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-sm-3">{{trans('admin.id_num')}}</label>
+
+                                <div class="col-sm-9">
+                                    <input name="id_num" class="form-control" type="number" value="{{old('id_num')}}"
+                                           placeholder="{{trans('admin.id_num')}}">
+                                </div>
+                            </div>
 
 
                             <div class="form-group row">
@@ -153,7 +162,7 @@
 
                                 <div class="col-sm-9">
                                     <input name="address" class="form-control" type="text" value="{{old('address')}}"
-                                           placeholder="{{trans('admin.address')}}" required>
+                                           placeholder="{{trans('admin.address')}}">
                                 </div>
                             </div>
 

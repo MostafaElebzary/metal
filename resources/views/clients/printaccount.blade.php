@@ -85,13 +85,13 @@
                         <thead style="font-family: Cairo;font-size: 18px;">
                             <tr style='text-align:center; font-family: Cairo;font-size: 18px;'>
                                 <th>{{trans('admin.part_number')}}</th>
-
-
                                 <th>{{trans('admin.check_num')}}</th>
                                 <th>{{trans('admin.phone')}}</th>
                                 <th>{{trans('admin.id_num')}}</th>
                                 <th>{{trans('admin.contractdate')}}</th>
                                 <th>{{trans('admin.contracttotal')}}</th>
+                                <th>{{trans('admin.client_name')}}</th>
+                                <th>{{trans('admin.mainclient_name')}}</th>
 
 
                                 <th>#</th>
@@ -107,12 +107,14 @@
 
                             <tr style='text-align:center'>
                                 <td>{{$contract->part_number}}</td>
-
                                 <td>{{$contract->check_num}}</td>
                                 <td>{{$contract->phone}}</td>
                                 <td>{{$contract->id_num}}</td>
                                 <td>{{$contract->check_date}}</td>
                                 <td>{{$contract->amount}}</td>
+                                <td>{{$contract->name}}</td>
+                                <td>{{$contract->getMainClient->name}}</td>
+
                                 <td>{{$i}}</td>
 
                             </tr>

@@ -8,9 +8,9 @@ return [
     'deleteConfirmation' => 'هل انت متأكد؟',
     'Profile' => 'الصفحه الشخصية',
     'Logout' => 'تسجيل خروج',
-    'editbranch'=>'تعديل الفرع',
-    'Clients' => 'العملاء',
-    'add_Clients' => 'إضافه عميل',
+    'editbranch' => 'تعديل الفرع',
+    'Clients' => 'المشاريع',
+    'add_Clients' => 'إضافه مشروع',
     'category' => 'التصنيف',
     'password' => 'كلمه السر',
     'add_user' => 'إضافه مندوب ',
@@ -27,7 +27,7 @@ return [
     'addedsuccess' => 'تم الإضافة بنجاح',
     'edit_Category' => 'تعديل التصنيف',
     'add_Category' => 'اضافه  تصنيف',
-    // 
+    //
     'createClient' => 'إضافة عميل ',
     'Address' => 'العنوان',
     'deligate' => ' مندوب التسويق',
@@ -39,11 +39,11 @@ return [
     'choosedeligate' => 'اختر مندوب',
     'editClient' => 'بيانات العميل',
 
-    'addClient' => 'إضافة عميل',
+    'addClient' => 'إضافة مشروع',
     'company_name' => 'اسم المكان /الشركة',
     'dashboard' => 'الصفحة الرئيسيه',
-    'Total_Client' => 'إجمالي العملاء',
-    'clientcount' => 'عدد العملاء',
+    'Total_Client' => 'إجمالي المشاريع',
+    'clientcount' => 'عدد المشاريع',
 
 
     'Controlpanel' => 'لوحه التحكم',
@@ -124,9 +124,9 @@ return [
     'addinreciept' => 'تحرير سند قبض',
     'addoutreciept' => 'تحرير سند صرف',
     'recieptsArchieve' => 'ارشيف السندات',
-    'clientsArchieve' => 'ارشيف العملاء',
-    'operationsOnClients' => 'العمليات على العملاء',
-    'operationsOnClientsArchieve' => 'ارشيف العمليات على العملاء',
+    'clientsArchieve' => 'ارشيف المشاريع',
+    'operationsOnClients' => 'العمليات على المشاريع',
+    'operationsOnClientsArchieve' => 'ارشيف العمليات على العملاء/المشاريع',
     'ClientAccountStatement' => 'كشف حساب عميل',
     'websiteControll' => 'ادارة محتوى الموقع',
     'employeesandperSettings' => 'اعدادات المستخدمين والصلاحيات',
@@ -270,7 +270,7 @@ return [
     'addprojecttype' => 'اضافه نوع مشروع',
     'editprojecttype' => 'تعديل نوع المشروع',
 
-    'client_name' => 'اسم العميل /المشروع',
+    'client_name' => 'اسم  المشروع',
     'id_num' => 'رقم الهويه',
     'check_num' => 'رقم الصك',
     'projecttype' => 'نوع المشروع',
@@ -312,10 +312,10 @@ return [
     'totalout' => ' اجمالى مبالغ الصرف للموظف',
     'addbranch' => 'اضافه فرع',
 
-    'homeinreciept'=>'اظهار سندات القبض فى الصفحه الرئيسيه',
-    'homeoutreciept'=>'اظهار سندات الصرف فى الصفحه الرئيسيه', 
-    'sendsms'=>'ارسال الرساله النصيه',
-    'sendall'=>'ارسال رساله جماعيه',
+    'homeinreciept' => 'اظهار سندات القبض فى الصفحه الرئيسيه',
+    'homeoutreciept' => 'اظهار سندات الصرف فى الصفحه الرئيسيه',
+    'sendsms' => 'ارسال الرساله النصيه',
+    'sendall' => 'ارسال رساله جماعيه',
 
     'active' => 'مفعل',
     'deactive' => 'معطل',
@@ -350,7 +350,7 @@ return [
     'createexporttransaction' => 'انشاء معاملة صادر',
     'allemployees' => 'كل الموظفين',
     'search' => 'بحث',
-    
+
     'transactionstatus' => 'حالة المعاملة',
     'secret' => 'المعاملة سرية',
     'urgent' => 'المعاملة عاجلة',
@@ -364,27 +364,21 @@ return [
     'import_trans_type' => ' نوع الوارد ',
     'import_thirdparty' => ' جهه الوارد',
     'import_trans_date' => ' تاريخ الوارد ',
-    'addFile'=>'اضافه مرفق',
-    'attachmentsnumber'=>'مرفقات المعامله رقم ',
-    
+    'addFile' => 'اضافه مرفق',
+    'attachmentsnumber' => 'مرفقات المعامله رقم ',
+
     'urgentandsecret' => 'المعاملة عاجلة وسرية ',
     'notransactionstatus' => 'المعاملة عادية',
-    'file'=>'المرفق',
-    'editimporttransaction'=>'تعديل معامله وارد',
-    'barcode'=>'طباعه الباركود',
+    'file' => 'المرفق',
+    'editimporttransaction' => 'تعديل معامله وارد',
+    'barcode' => 'طباعه الباركود',
     'transactionstype' => 'اعدادات انواع المعاملات',
-    'editexporttransaction'=>'تعديل معامله صادر',
-    'inexcel'=>'تصدير سندات القبض لملف اكسيل'
- 
-
-
-
-
-
-
-
-
-
+    'editexporttransaction' => 'تعديل معامله صادر',
+    'inexcel' => 'تصدير سندات القبض لملف اكسيل',
+    'mainclients' => 'العملاء',
+    'editmainclient' => 'تعديل بيانات عميل',
+    'addmainclient' => 'اضافه عميل',
+    'mainclient_name' => 'اسم العميل',
 
 
 ];

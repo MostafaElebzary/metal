@@ -44,16 +44,17 @@ class ClientsController extends Controller
             \request(),
             [
                 'projecttype_id' => 'required',
+                'mainclient_id' => 'required',
                 'name' => 'required',
-                'address' => 'required',
-                'phone' => 'required|unique:clients|regex:/(9665)[0-9]{7}/',
-                'id_num' => 'required',
+                'address' => 'sometimes|nullable',
+                'phone' => 'sometimes|nullable|unique:clients',
+                'id_num' => 'sometimes|nullable',
                 'check_num' => 'required',
-                'check_date' => 'required', 
+                'check_date' => 'required',
                 'part_number' => 'required',
                 'scheme_number' => 'required',
                 'taxepercent' => 'required',
-                'total' => 'required', 
+                'total' => 'required',
                 'amount' => 'required',
             ]
         );
@@ -71,7 +72,7 @@ class ClientsController extends Controller
             ];
         }
         Payment::insert($payments);
-        //end insert payment data 
+        //end insert payment data
 
         //insert files
         $atts = $request->input('atts');
@@ -158,9 +159,9 @@ class ClientsController extends Controller
                 'check_date' => 'required',
                 'amount' => 'required',
                 'part_number' => 'required',
-                'scheme_number' => 'required', 
+                'scheme_number' => 'required',
                 'taxepercent' => 'required',
-                'total' => 'required', 
+                'total' => 'required',
                 'amount' => 'required',
             ]
         );
@@ -168,12 +169,12 @@ class ClientsController extends Controller
         Client::where('id', $id)->update($data);
         //payment data
         $payments  = Payment::where('client_id', $id)->get();
-       
+
         foreach ($payments as $payment) {
             $payment->delete();
         }
         $rows = $request->input('rows');
-        
+
         foreach ($rows as $row) {
             $pays[] = [
                 'client_id' => $id,
@@ -182,7 +183,7 @@ class ClientsController extends Controller
                 // 'payment_date' => $row['payment_date'],
                 'amount' => $row['amount'],
             ];
-           
+
         }
         Payment::insert($pays);
 

@@ -78,7 +78,7 @@
                                class="col-sm-2 col-form-label">{{trans('admin.recieptDate')}}</label>
                         <div class="col-sm-10">
                             <input name="type" class="form-control" type="hidden" value="قبض">
-                            <input name="date" class="form-control" type="date" value="{{old('date')}}"
+                            <input name="date" id="hijri-picker" class="form-control" type="text" value="{{old('date')}}"
                                    placeholder="{{trans('admin.date')}}" required>
                         </div>
                     </div>
@@ -91,11 +91,25 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="example-text-input" class="col-sm-2">{{trans('admin.mainclient_name')}}</label>
+
+                        <div class="col-sm-10" id="parent">
+
+                            <select id="mainclient" class="itemName form-control" style="text-align-last: right;"
+                                    name="mainclient_id">
+
+
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="example-text-input" class="col-sm-2">{{trans('admin.client_name')}}</label>
 
                         <div class="col-sm-10" id="parent">
 
-                            <select id="client" class="itemName form-control" style="text-align-last: right;"
+                            <select id="client" class=" form-control" style="text-align-last: right;"
                                     name="client_id">
 
 
@@ -181,18 +195,8 @@
 
                 </tr>
                 </thead>
-                <tbody>
-                <tr style='text-align:center'>
-                    <td><input name="check_num" id="check_num" class="form-control" type="text"
-                               value="{{old('check_num')}}" placeholder="{{trans('admin.check_num')}}" readonly>
-                    </td>
-                    <td><input name="part_number" id="part_number" class="form-control" type="text"
-                               value="{{old('part_number')}}" placeholder="{{trans('admin.part_number')}}" readonly>
-                    </td>
-                    <td><input name="scheme_number" id="scheme_number" class="form-control" type="text"
-                               value="{{old('scheme_number')}}" placeholder="{{trans('admin.scheme_number')}}" readonly>
-                    </td>
-                </tr>
+                <tbody id="tbody">
+
                 </tbody>
         </div>
     </div>
@@ -204,32 +208,76 @@
 @section('script')
     <script>
         $(function () {
-            $("#client").on('change', function () {
-                var id = document.getElementById("client").value;
+            $("#mainclient").on('change', function () {
+                var id = document.getElementById("mainclient").value;
+                console.log(id);
 
                 $.ajax({
                     url: "/clientdata/" + id,
                     dataType: "json",
                     success: function (html) {
-                        var amount = html.data_client.amount;
-                        var pays = html.data_client_reciept;
-                        var subtotal = amount - pays;
-                        $('#amounts').val(html.data_client.amount);
-                        $('#suubtotal').val(subtotal);
-                        $('#check_num').val(html.data_client.check_num);
-                        $('#phone').val(html.data_client.phone);
-                        $('#part_number').val(html.data_client.part_number);
-                        $('#scheme_number').val(html.data_client.scheme_number);
+                        $('#client').empty();
+                        $("#client").append('<option>--اختر مشروع--</option>');
+                        if(html)
+                        {
+                            $.each(html.data_client,function(key,value){
+                                $('#client').append($("<option/>", {
+                                    value: value,
+                                    text: key
+                                }));
+                            });
+                            var res='';
+                            $.each (html.data_client_table, function (key, value) {
+                                res +=
+                                    '<tr style="text-align:center; font-family: Cairo;font-size: 18px;">'+
+                                    '<td>'+value.check_num+'</td>'+
+                                    '<td>'+value.part_number+'</td>'+
+                                    '<td>'+value.scheme_number+'</td>'+
+                                    '</tr>';
+
+                            });
+
+                            $('tbody').html(res);
+                        }
 
                     }
                 })
             });
         });
     </script>
+
+    <script>
+        $(function () {
+            $("#client").on('change', function () {
+                var id = document.getElementById("client").value;
+                console.log(id);
+
+                $.ajax({
+                    url: "/clientdata/" + id,
+                    dataType: "json",
+                    success: function (html) {
+
+                        var amount = html.data_project.amount;
+                        var phone = html.data_project.phone;
+                        var pays = html.data_client_reciept;
+                        var subtotal = amount - pays;
+                        $('#amounts').val(amount);
+                        $('#suubtotal').val(subtotal);
+                        $('#phone').val(phone);
+
+                    }
+                })
+            });
+        });
+    </script>
+
+
+
+
     <script type="text/javascript">
         $(function () {
             $('.itemName').select2({
-                placeholder: '  ابحث باسم العميل او رقم الهويه او رقم الجوال',
+                placeholder: '  ابحث باسم العميل او رقم الهويه او رقم جوال العميل',
                 dir: 'rtl',
                 dropdownParent: $('#parent'),
                 ajax: {
@@ -251,6 +299,23 @@
             });
 
         });
+    </script>
+    <script type="text/javascript">
+
+
+        $(function () {
+
+            initDefault();
+
+        });
+
+        function initDefault() {
+            $("#hijri-picker").hijriDatePicker({
+                hijri: true,
+                showSwitcher: false
+            });
+        }
+
     </script>
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>

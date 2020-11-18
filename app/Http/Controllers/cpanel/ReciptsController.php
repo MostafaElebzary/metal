@@ -4,6 +4,7 @@ namespace App\Http\Controllers\cpanel;
 
 use App\Client;
 use App\Http\Controllers\Controller;
+use App\MainClient;
 use App\MainData;
 use App\Reciept;
 use Illuminate\Http\Request;
@@ -18,12 +19,12 @@ class ReciptsController extends Controller
      */
     public function index()
     {
-         if(Auth::user()->type == 'admin'){
+        if (Auth::user()->type == 'admin') {
             $reciepts = Reciept::all();
-         }else{
-            $reciepts = Reciept::where('user_id',Auth::user()->id)->get();
+        } else {
+            $reciepts = Reciept::where('user_id', Auth::user()->id)->get();
 
-         }
+        }
 
         return view('recipts.index', \compact('reciepts'));
     }
@@ -45,33 +46,38 @@ class ReciptsController extends Controller
 
     public function dataAjax(Request $request)
     {
-    	$data = Client::select("id","name")->get();
+        $data = MainClient::select("id", "name")->get();
 
 
-        if($request->has('q')){
+        if ($request->has('q')) {
             $search = $request->q;
             $data = Client
-            		::select("id","name")
-                    ->where('name','LIKE',"%$search%")->orWhere('id_num','LIKE',"%$search%")
-                    ->orWhere('phone','LIKE',"%$search%")
-            		->get();
+                ::select("id", "name")
+                ->where('name', 'LIKE', "%$search%")->orWhere('id_num', 'LIKE', "%$search%")
+                ->orWhere('phone', 'LIKE', "%$search%")
+                ->get();
         }
 
 
         return response()->json($data);
     }
+
     public function clientdata($id)
     {
-        $data_client = Client::where('id', $id)->first();
+//            main client id
+        $data_client = Client::where('mainclient_id', $id)->pluck("id", "name");
+        $data_client_table = Client::where('mainclient_id', $id)->get();
+        //project  id
+        $data_project = Client::where('id', $id)->first();
         $data_client_reciept = Reciept::where('client_id', $id)->sum('amount');
 
-        return response()->json(['data_client' => $data_client,'data_client_reciept' => $data_client_reciept]);
+        return response()->json(['data_project'=>$data_project,'data_client_table'=>$data_client_table,'data_client' => $data_client,'data_client_reciept' => $data_client_reciept]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function sms($mobile_num, $message)
@@ -104,9 +110,9 @@ class ReciptsController extends Controller
         );
         $data['user_id'] = Auth::user()->id;
         $reciept = Reciept::create($data);
-        if($request->type == 'قبض'){
-            if($request->sendsms == 'yes'){
-                $message = 'تم الاستلام من المكرم '.$reciept->getClient->name.' مبلغ وقدرة  '.$reciept->amount.'  ريال سعودي وذلك لسند قبض رقم '.$reciept->id;
+        if ($request->type == 'قبض') {
+            if ($request->sendsms == 'yes') {
+                $message = 'تم الاستلام من المكرم ' . $reciept->getClient->name . ' مبلغ وقدرة  ' . $reciept->amount . '  ريال سعودي وذلك لسند قبض رقم ' . $reciept->id;
 
                 $this->sms($request->phone, $message);
             }
@@ -119,7 +125,7 @@ class ReciptsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -129,15 +135,15 @@ class ReciptsController extends Controller
         $data_client = Client::where('id', $client_id)->first();
         $data_client_reciept = Reciept::where('client_id', $client_id)->sum('amount');
 
-        $subtotal  = $data_client->amount -$data_client_reciept;
+        $subtotal = $data_client->amount - $data_client_reciept;
         $maindata = MainData::first();
-        return view('recipts.print', compact('reciept', 'maindata','data_client','subtotal'));
+        return view('recipts.print', compact('reciept', 'maindata', 'data_client', 'subtotal'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -148,8 +154,8 @@ class ReciptsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -160,12 +166,12 @@ class ReciptsController extends Controller
     public function search(Request $request)
     {
 
-        if($request->type == 'all'){
-            $reciepts =   Reciept::whereBetween('date', array($request->fromdate, $request->todate))
+        if ($request->type == 'all') {
+            $reciepts = Reciept::whereBetween('date', array($request->fromdate, $request->todate))
                 ->where('pay_type', $request->pay_type)
                 ->where('client_id', $request->client_id)->get();
-        }else{
-            $reciepts =   Reciept::whereBetween('date', array($request->fromdate, $request->todate))
+        } else {
+            $reciepts = Reciept::whereBetween('date', array($request->fromdate, $request->todate))
                 ->where('type', $request->type)->where('pay_type', $request->pay_type)
                 ->where('client_id', $request->client_id)->get();
         }
@@ -175,7 +181,7 @@ class ReciptsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

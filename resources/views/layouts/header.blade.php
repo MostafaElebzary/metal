@@ -152,13 +152,13 @@
 
                                   </li>
                                   @endif
-                                  @if($permission->clientsArchieve == 'yes')
 
-                                  <!-- <li class="">
-                                      <a href="#"> {{trans('admin.clientsArchieve')}}</a>
 
-                                  </li> -->
-                                  @endif
+                                   <li class="">
+                                      <a href="{{url('mainclient')}}"> {{trans('admin.mainclients')}}</a>
+
+                                  </li>
+
                                   @if($permission->operationsonclients == 'yes')
 
                                   <!-- <li class="">

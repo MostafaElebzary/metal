@@ -153,7 +153,7 @@ class inboxController extends Controller
         $url = "https://api.unifonic.com/wrapper/sendSMS.php";
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "userid=fetoh@koof-ksa.com&password=fetoh0533097940&msg=" . $message . "&sender=EmarSrh&to=" . $mobile_num . "&encoding=UTF8"); // define what you want to post
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "userid=fetoh@koof-ksa.com&password=$a<$/kfG~?!@g=G=&msg=" . $message . "&sender=EmarSrh&to=" . $mobile_num . "&encoding=UTF8"); // define what you want to post
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $output = curl_exec($ch);
         curl_close($ch);

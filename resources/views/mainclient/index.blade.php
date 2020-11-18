@@ -26,9 +26,9 @@
     <div class="breadcrumb-wrapper col-xs-12">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                {{trans('admin.ClientsList')}}
+                {{trans('admin.cpanel')}}
             </li>
-            <li class="breadcrumb-item"><a href="{{url('recipts')}}"> {{trans('admin.reciepts')}} </a>
+            <li class="breadcrumb-item"> {{trans('admin.mainclients')}}
             </li>
 
         </ol>
@@ -48,66 +48,9 @@
 
 
     <div class="col-12">
-        <div class="card m-b-20">
-            <div class="card-body">
-                {{ Form::open( ['url' => ['recipt'],'method'=>'post'] ) }}
-                {{ csrf_field() }}
-                <div class="col-sm-12 row">
-                    <div class="form-group row col-sm-6">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">{{trans('admin.fromdate')}}</label>
-                        <div class="col-sm-10">
-                            <input name="fromdate" class="form-control" type="date" value="{{old('fromdate')}}" placeholder="{{trans('admin.fromdate')}}" required>
-                        </div>
-                    </div>
-                    <div class="form-group row col-sm-6">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">{{trans('admin.todate')}}</label>
-                        <div class="col-sm-10">
-                            <input name="todate" class="form-control" type="date" value="{{old('todate')}}" placeholder="{{trans('admin.todate')}}" required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 row">
-                    <div class="form-group row col-sm-6">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">{{trans('admin.reciepttype')}}</label>
-                        <div class="col-sm-10">
-                            {{ Form::select('type', array('all'=>'كلاهما','قبض'=>'قبض','صرف'=>'صرف'),old('type')
-                         ,["class"=>"form-control "]) }}
-                        </div>
-                    </div>
-                    <div class="form-group row col-sm-6">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">{{trans('admin.pay_type')}}</label>
-                        <div class="col-sm-10">
-                            {{ Form::select('pay_type', array('نقد'=>'نقد','شبكه'=>'شبكه'),old('pay_type')
-                         ,["class"=>"form-control "]) }}
-                        </div>
-                    </div>
-
-                </div>
-                <div class="">
-                    <div class="form-group col-sm-6 row">
-                        <label for="example-text-input" class="col-sm-2">{{trans('admin.client_name')}}</label>
-
-                        <div class="col-sm-10">
-
-                            {{ Form::select('client_id',App\Client::pluck('name','id'),old('client_id')
-                         ,["class"=>"form-control client_id " ]) }}
-
-                        </div>
-                    </div>
-                </div>
-
-                {{ Form::submit( trans('admin.search') ,['class'=>'btn btn-info btn-block']) }}
-                {{ Form::close() }}
-            </div>
+        <div>
+            <a href="{{url('mainclient/create')}}  " class="btn btn-info btn-block">{{trans('admin.addmainclient')}} </a>
         </div>
-    </div>
-</div>
-
-<div class="row">
-
-
-    <div class="col-12">
         <div class="card m-b-20">
             <div class="card-body">
 
@@ -115,13 +58,10 @@
                     <thead style="font-family: Cairo;font-size: 18px;">
                         <tr style='text-align:center; font-family: Cairo;font-size: 18px;'>
                             <th>#</th>
-                            <th>{{trans('admin.mainclient_name')}}</th>
-                            <th>{{trans('admin.reciept_num')}}</th>
-                            <th>{{trans('admin.reciepttype')}}</th>
-                            <th>{{trans('admin.recieptDate')}}</th>
-                            <th>{{trans('admin.client_name')}}</th>
-                            <th>{{trans('admin.amount')}}</th>
-                            <th>{{trans('admin.descri')}}</th>
+                            <th>{{trans('admin.Name')}}</th>
+                            <th>{{trans('admin.phone')}}</th>
+                            <th>{{trans('admin.address')}}</th>
+                            <th>{{trans('admin.id_num')}}</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -131,30 +71,28 @@
                         @php
                         $i = 1;
                         @endphp
-                        @foreach($reciepts as $user)
+                        @foreach($mainclients as $user)
 
                         <tr style='text-align:center'>
                             <td>{{$i}}</td>
-                            <td>{{$user->getClient->getMainClient->name}}</td>
-                            <td>{{$user->id}}</td>
-                            <td>{{$user->type}}</td>
-                            <td>{{$user->date}}</td>
-                            <td>{{$user->getClient->name}}</td>
-                            <td>{{$user->amount}}</td>
-                            <td>{{$user->desc}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->phone}}</td>
+                            <td>{{$user->address}}</td>
+                            <td>{{$user->id_num}}</td>
                             <td>
-                                <a class='btn btn-raised btn-info btn-sml' data-placement="top" title="طباعه"target="_blank" href="{{url('recipts/'.$user->id)}}"><i class="fa fa-print"></i></a>
-                                @php
+                            @php
                                 $user_id=auth()->user()->id;
                                 $permission =App\Permission::where('user_id',$user_id)->first();
                                 @endphp
                                 @if($permission->deleteinbox == 'yes')
 
-                                <form method="get" id='delete-form-{{ $user->id }}' action="{{url('recipts/'.$user->id.'/delete')}}" style='display: none;'>
+                                <a class='btn btn-raised btn-success btn-sml' href=" {{url('mainclient/'.$user->id.'/edit')}}"><i class="fa fa-edit"></i></a>
+
+                                <form method="get" id='delete-form-{{ $user->id }}' action="{{url('mainclient/'.$user->id.'/delete')}}" style='display: none;'>
                                     {{csrf_field()}}
                                     <!-- {{method_field('delete')}}   -->
                                 </form>
-                                <button data-placement="top" title="حذف" onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
+                                <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
                       {
                           event.preventDefault();
                           document.getElementById('delete-form-{{ $user->id }}').submit();
