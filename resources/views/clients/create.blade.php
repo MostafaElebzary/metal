@@ -171,7 +171,7 @@
 
                                 <div class="col-sm-9">
                                     <input name="phone" class="form-control" type="number" value="{{old('phone')}}"
-                                           placeholder="{{trans('admin.phone')}}" required>
+                                           placeholder="{{trans('admin.phone')}}">
                                 </div>
                             </div>
                         </div>

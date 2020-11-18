@@ -35,7 +35,7 @@ class ClientsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,7 +47,7 @@ class ClientsController extends Controller
                 'mainclient_id' => 'required',
                 'name' => 'required',
                 'address' => 'sometimes|nullable',
-                'phone' => 'sometimes|nullable|unique:clients',
+                'phone' => 'sometimes|nullable',
                 'id_num' => 'sometimes|nullable',
                 'check_num' => 'required',
                 'check_date' => 'required',
@@ -59,7 +59,7 @@ class ClientsController extends Controller
             ]
         );
 
-        $client =     Client::create($data);
+        $client = Client::create($data);
         // insert payment data
         $rows = $request->input('rows');
         foreach ($rows as $row) {
@@ -99,12 +99,12 @@ class ClientsController extends Controller
     public function MoveImage($request_file)
     {
         // This is Image Information ...
-        $file    = $request_file;
-        $name    = $file->getClientOriginalName();
-        $ext     = $file->getClientOriginalExtension();
-        $size    = $file->getSize();
-        $path    = $file->getRealPath();
-        $mime    = $file->getMimeType();
+        $file = $request_file;
+        $name = $file->getClientOriginalName();
+        $ext = $file->getClientOriginalExtension();
+        $size = $file->getSize();
+        $path = $file->getRealPath();
+        $mime = $file->getMimeType();
 
         // Move Image To Folder ..
         $fileNewName = 'file' . $size . '_' . time() . '.' . $ext;
@@ -112,15 +112,16 @@ class ClientsController extends Controller
 
         return $fileNewName;
     }
+
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $reciepts =  Reciept::where('type','قبض')->where('client_id',$id)->get();
+        $reciepts = Reciept::where('type', 'قبض')->where('client_id', $id)->get();
         return view('clients.payment', compact('reciepts'));
 
     }
@@ -128,21 +129,21 @@ class ClientsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $client_data =  Client::where('id', $id)->first();
-        $payments  = Payment::where('client_id', $id)->get();
+        $client_data = Client::where('id', $id)->first();
+        $payments = Payment::where('client_id', $id)->get();
         return view('clients.edit', compact('client_data', 'payments'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -152,9 +153,9 @@ class ClientsController extends Controller
             [
                 'projecttype_id' => 'required',
                 'name' => 'required',
-                'address' => 'required',
-                'phone' => 'required|regex:/(9665)[0-9]{7}/|unique:clients,phone,' . $id,
-                'id_num' => 'required',
+                'address' => 'sometimes|nullable',
+                'phone' => 'sometimes|nullable',
+                'id_num' => 'sometimes|nullable',
                 'check_num' => 'required',
                 'check_date' => 'required',
                 'amount' => 'required',
@@ -168,7 +169,7 @@ class ClientsController extends Controller
 
         Client::where('id', $id)->update($data);
         //payment data
-        $payments  = Payment::where('client_id', $id)->get();
+        $payments = Payment::where('client_id', $id)->get();
 
         foreach ($payments as $payment) {
             $payment->delete();
@@ -193,7 +194,7 @@ class ClientsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

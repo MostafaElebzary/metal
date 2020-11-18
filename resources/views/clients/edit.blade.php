@@ -55,13 +55,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="example-text-input" class="col-sm-3">{{trans('admin.id_num')}}</label>
 
-                            <div class="col-sm-9">
-                                <input name="id_num" class="form-control" type="number" value="{{$client_data->id_num}}" placeholder="{{trans('admin.id_num')}}" required>
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-3">{{trans('admin.check_num')}}</label>
@@ -135,13 +129,19 @@
 
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-3">{{trans('admin.id_num')}}</label>
 
+                            <div class="col-sm-9">
+                                <input name="id_num" class="form-control" type="number" value="{{$client_data->id_num}}" placeholder="{{trans('admin.id_num')}}" >
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-3">{{trans('admin.address')}}</label>
 
                             <div class="col-sm-9">
-                                <input name="address" class="form-control" type="text" value="{{$client_data->address}}" placeholder="{{trans('admin.address')}}" required>
+                                <input name="address" class="form-control" type="text" value="{{$client_data->address}}" placeholder="{{trans('admin.address')}}" >
                             </div>
                         </div>
 
@@ -149,7 +149,7 @@
                             <label for="example-text-input" class="col-sm-3">{{trans('admin.phone')}}</label>
 
                             <div class="col-sm-9">
-                                <input name="phone" class="form-control" type="number" value="{{$client_data->phone}}" placeholder="{{trans('admin.phone')}}" required>
+                                <input name="phone" class="form-control" type="number" value="{{$client_data->phone}}" placeholder="{{trans('admin.phone')}}" >
                             </div>
                         </div>
                     </div>

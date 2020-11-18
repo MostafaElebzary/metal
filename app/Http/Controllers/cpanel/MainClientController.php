@@ -89,7 +89,7 @@ class MainClientController extends Controller
                 'name' => 'required',
                 'id_num' => 'required',
                 'address' => 'required',
-                'phone' => 'required',
+                'phone' => 'required|regex:/(9665)[0-9]{7}/|unique:main_clients,phone,' . $id,
             ]
         );
 
