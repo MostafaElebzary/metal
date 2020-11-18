@@ -1030,9 +1030,9 @@ body {
   padding: 20px 0;
 }
 
-/* ==============
-  Bootstrap-custom
-===================*/
+/*!* ==============*/
+/*  Bootstrap-custom*/
+/*===================*!*/
 .row {
   margin-right: -10px;
   margin-left: -10px;
@@ -1079,8 +1079,10 @@ body {
   font-size: 15px;
   -webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
           box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-  visibility: hidden;
-  opacity: 0;
+
+  /*visibility: hidden;*/
+  /*opacity: 0;*/
+
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
   margin-top: 20px;

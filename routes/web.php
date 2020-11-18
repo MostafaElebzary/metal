@@ -28,8 +28,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('users/{id}/delete', 'admin\usersController@destroy');
 
 
-
-
     //permission
     Route::resource('permission', 'admin\permissionController');
 
@@ -79,79 +77,81 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('inbox/{id}/delete', 'inbox\inboxController@destroy');
     Route::post('sendmessage', 'inbox\inboxController@sendmessage');
 //send message from client archieve
-Route::get('client_data/{id}', 'inbox\inboxController@clientdata');
-Route::post('clientsendmessage', 'inbox\inboxController@clientsendmessage');
+    Route::get('client_data/{id}', 'inbox\inboxController@clientdata');
+    Route::post('clientsendmessage', 'inbox\inboxController@clientsendmessage');
 
 
     //show message
     Route::get('messageList/{id}', 'inbox\inboxController@messageList');
 
 
-
     //map
     Route::resource('map', 'websitePanel\MapController');
-    
-//cpanel 
-//project type 
-Route::resource('projecttypes', 'cpanel\ProjectTypeController');
-Route::get('projecttypes/{id}/delete', 'cpanel\ProjectTypeController@destroy');
+
+//cpanel
+//project type
+    Route::resource('projecttypes', 'cpanel\ProjectTypeController');
+    Route::get('projecttypes/{id}/delete', 'cpanel\ProjectTypeController@destroy');
 
 //clients  and Operation on client archieve
-Route::resource('client', 'cpanel\ClientsController'); 
+    Route::resource('client', 'cpanel\ClientsController');
 //client`s file this id refer to client_id
-Route::get('clientfiles/{id}', 'cpanel\FilesController@index');
-Route::get('clientfiles/{id}/delete', 'cpanel\FilesController@destroy');
-Route::get('clientfiles/create/{id}', 'cpanel\FilesController@create');
-Route::post('clientfiles/store', 'cpanel\FilesController@store');
+    Route::get('clientfiles/{id}', 'cpanel\FilesController@index');
+    Route::get('clientfiles/{id}/delete', 'cpanel\FilesController@destroy');
+    Route::get('clientfiles/create/{id}', 'cpanel\FilesController@create');
+    Route::post('clientfiles/store', 'cpanel\FilesController@store');
 
-//recipets 
-Route::resource('recipts', 'cpanel\ReciptsController');
-Route::get('recipts/{id}/delete', 'cpanel\ReciptsController@destroy');
-Route::get('recipt/createout', 'cpanel\ReciptsController@createout');
-Route::post('recipt', 'cpanel\ReciptsController@search');
+//recipets
+    Route::resource('recipts', 'cpanel\ReciptsController');
+    Route::get('recipts/{id}/delete', 'cpanel\ReciptsController@destroy');
+    Route::get('recipt/createout', 'cpanel\ReciptsController@createout');
+    Route::post('recipt', 'cpanel\ReciptsController@search');
 
-//account statements  
-Route::resource('account', 'cpanel\AccountStatements');
-Route::get('AccountPrint/{id}', 'cpanel\AccountStatements@AccountPrint');
+//account statements
+    Route::resource('account', 'cpanel\AccountStatements');
+    Route::get('AccountPrint/{id}', 'cpanel\AccountStatements@AccountPrint');
 //user statistics
-Route::resource('userstatistics', 'cpanel\UsersStatisticsController');
+    Route::resource('userstatistics', 'cpanel\UsersStatisticsController');
 //branches
 
-Route::resource('branch', 'cpanel\BranchController');
-Route::get('sendall', 'cpanel\BranchController@sendall');
-Route::post('sendall', 'cpanel\BranchController@send');
-Route::get('branch/{id}/delete', 'cpanel\BranchController@destroy');
+    Route::resource('branch', 'cpanel\BranchController');
+    Route::get('sendall', 'cpanel\BranchController@sendall');
+    Route::post('sendall', 'cpanel\BranchController@send');
+    Route::get('branch/{id}/delete', 'cpanel\BranchController@destroy');
 
 //search client select in reciepts
 
-Route::get('select2-autocomplete-ajax', 'cpanel\ReciptsController@dataAjax');
-Route::get('clientdata/{id}', 'cpanel\ReciptsController@clientdata');
+    Route::get('select2-autocomplete-ajax', 'cpanel\ReciptsController@dataAjax');
+    Route::get('clientdata/{id}', 'cpanel\ReciptsController@clientdata');
 //transactions
-Route::resource('transactionstypes', 'cpanel\transactionsTypesController');
-Route::get('transactionstypes/{id}/delete', 'cpanel\transactionsTypesController@destroy');
+    Route::resource('transactionstypes', 'cpanel\transactionsTypesController');
+    Route::get('transactionstypes/{id}/delete', 'cpanel\transactionsTypesController@destroy');
 
-Route::resource('transactions', 'cpanel\transactionsController');
-Route::get('transactions/{id}/delete', 'cpanel\transactionsController@destroy');
+    Route::resource('transactions', 'cpanel\transactionsController');
+    Route::get('transactions/{id}/delete', 'cpanel\transactionsController@destroy');
 
-Route::get('importcreate', 'cpanel\transactionsController@importcreate');
+    Route::get('importcreate', 'cpanel\transactionsController@importcreate');
 
 
-Route::post('search', 'cpanel\transactionsController@search');
-Route::get('attachment/{id}', 'cpanel\transactionsController@attachment');
-Route::post('addattachment', 'cpanel\transactionsController@addattachment');
+    Route::post('search', 'cpanel\transactionsController@search');
+    Route::get('attachment/{id}', 'cpanel\transactionsController@attachment');
+    Route::post('addattachment', 'cpanel\transactionsController@addattachment');
 
-Route::get('attachment/{id}/delete', 'cpanel\transactionsController@delete');
-Route::get('barcode/{id}', 'cpanel\transactionsController@generateBarcode');
+    Route::get('attachment/{id}/delete', 'cpanel\transactionsController@delete');
+    Route::get('barcode/{id}', 'cpanel\transactionsController@generateBarcode');
 
-Route::resource('thirdparty', 'cpanel\thirdPartyController');
-Route::get('thirdparty/{id}/delete', 'cpanel\thirdPartyController@destroy');
+    Route::resource('thirdparty', 'cpanel\thirdPartyController');
+    Route::get('thirdparty/{id}/delete', 'cpanel\thirdPartyController@destroy');
 
+
+    //Main Client
+    Route::resource('mainclient', 'cpanel\MainClientController');
+    Route::get('mainclient/{id}/delete', 'cpanel\MainClientController@destroy');
 });
 
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('home', 'HomeController@index');
-
 
 
     Route::get('/logout', function () {

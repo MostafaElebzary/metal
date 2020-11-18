@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     protected $fillable = [
-        'projecttype_id', 'name', 'address', 'phone', 'id_num', 'check_num',
+        'projecttype_id',
+        'mainclient_id',
+        'name', 'address', 'phone', 'id_num',
+        'check_num',
         'check_date',
         'amount',
         'part_number',
@@ -19,5 +22,10 @@ class Client extends Model
     public function getProjectType()
     {
         return $this->hasOne('App\ProjectType', 'id', 'projecttype_id');
+    }
+
+    public function getMainClient()
+    {
+        return $this->hasOne('App\MainClient', 'id', 'mainclient_id');
     }
 }

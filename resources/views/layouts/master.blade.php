@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+
 @php
 $main_data = App\MainData::first();
 @endphp
@@ -15,10 +15,10 @@ $main_data = App\MainData::first();
         @include('layouts.head')
     </head>
     @if(session('lang')=='en')
-    <body > 
+    <body >
     @else
-    <body dir="rtl" > 
-    
+    <body dir="rtl" >
+
     @endif
 
     <!-- Loader -->
@@ -32,9 +32,9 @@ $main_data = App\MainData::first();
                 @yield('content')
             </div>
         </div>
-        @include('layouts.footer')   
+        @include('layouts.footer')
     </div>
-    @include('layouts.footer-script')  
+    @include('layouts.footer-script')
 
     @stack('js')
 

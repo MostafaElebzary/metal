@@ -7,6 +7,7 @@
 <link href="{{ URL::asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- Responsive datatable examples -->
 <link href="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ URL::asset('assets/plugins/morris/morris.css') }}">
 
 @else
 <!-- DataTables -->
@@ -14,6 +15,7 @@
 <link href="{{ URL::asset('rtl/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- Responsive datatable examples -->
 <link href="{{ URL::asset('rtl/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ URL::asset('assets/plugins/morris/morris.css') }}">
 
 @endif
 
@@ -90,7 +92,6 @@
                                                        title="المرفقات" href=" {{url('clientfiles/'.$user->id)}}"><i class="fa fa-file"></i></a>
                                 <button type="button" data-placement="top" title="ارسال رساله"
                                 class="btn btn-raised btn-info btn-sml" data-inboxidd="{{$user->id}}" id="send" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope"></i></button>
-
 
                             </td>
                         </tr>
@@ -170,7 +171,6 @@
             success: function(html) {
                 $('#fullname1').val(html.data.name);
                 $('#phone1').val(html.data.phone);
-
             }
         })
     });
@@ -178,18 +178,12 @@
 <!-- Required datatable js -->
 <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
-<!-- Buttons examples -->
-<script src="{{ URL::asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/jszip.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
 <!-- Responsive examples -->
 <script src="{{ URL::asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+
+<script src="{{ URL::asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/modernizr.min.js') }}"></script>
 
 <!-- Datatable init js -->
 <script src="{{ URL::asset('assets/pages/datatables.init.js') }}"></script>

@@ -17,6 +17,9 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->bigInteger('projecttype_id')->unsigned();
             $table->foreign('projecttype_id')->references('id')->on('project_types')->onDelete('cascade');
+            $table->bigInteger('mainclient_id')->unsigned();
+            $table->foreign('mainclient_id')->references('id')->on('main_clients')->onDelete('cascade');
+
             $table->string('name');
             $table->string('address');
             $table->string('phone')->unique();
