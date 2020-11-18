@@ -76,7 +76,7 @@
                                 <i class="fa fa-instagram"></i>
                             </a>
                             <!--<a href="{{$maindata->whatsapp}}">-->
-                                <a href="https://wa.me/{{$maindata->whatsapp}}" target="_blank">
+                            <a href="https://wa.me/{{$maindata->whatsapp}}" target="_blank">
 
                                 <i class="fa fa-whatsapp"></i>
                             </a>
@@ -97,8 +97,8 @@
         </div>
         <!-- Top Bar -->
         <!-- Sticky Navbar -->
-         <header id="sticker" class="sticky-navigation dark-header">
-             <!-- Sticky Menu -->
+        <header id="sticker" class="sticky-navigation dark-header">
+            <!-- Sticky Menu -->
             <div class="sticky-menu relative">
                 <!-- navbar -->
                 <div class="navbar navbar-default navbar-bg-light" role="navigation">
@@ -113,7 +113,7 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span></button>
                                     <!-- Logo -->
-                                    <a class="navbar-brand" href="#" >
+                                     <a class="navbar-brand" href="#" >
                                         <img class="site_logo" style="height: 60px;width:130px" alt="Site Logo" height="50px" src="{{url('uploads/'. $maindata->logo)}}" />
 
                                     </a></div>
@@ -137,7 +137,6 @@
                                         <li>
                                             <a href="#works" class="scroll">{{trans('admin.featuredwork')}}</a>
                                         </li>
-
                                         <li>
                                             <a href="#contact-us" class="scroll">{{trans('admin.Contactus')}}</a>
                                         </li>
@@ -266,11 +265,11 @@
                 <div class="row white">
                     <div class="owl-carousel navigation-1 opacity text-left" data-pagination="false" data-items="3" data-autoplay="true" data-navigation="true">
                         @foreach($services as $service)
-                        <div class="col-sm-6 col-md-4 col-xs-12" >
+                        <div class="col-sm-6 col-md-4 col-xs-12">
                             <p class="text-center">
-                                 <img src="{{url('uploads/services/'.$service->image)}}"  style="height: 280px;width:420px"  alt="" />
+                                  <img src="{{url('uploads/services/'.$service->image)}}"  style="height: 280px;width:420px"  alt="" />
                              </p>
-                            @if(session('lang')=='en')
+                             @if(session('lang')=='en')
 
                             <h3>
                                 <a href="#">{{$service->title_en}}</a>
@@ -429,7 +428,8 @@
                             $product_image = App\ProductDetail::where('product_id',$work->id)->first();
                             @endphp
                             @if($product_image !=null)
-                            <img src="{{url('uploads/products/'.$product_image->image)}}" style="height: 273px;width:400px"  alt="Recent Work" class="img-responsive" />
+                             <img src="{{url('uploads/products/'.$product_image->image)}}" style="height: 273px;width:400px"  alt="Recent Work" class="img-responsive" />
+
                             @endif
                             <div class="figcaption">
                                 <!-- Image Popup-->
@@ -523,9 +523,7 @@
             </div>
         </section>
         <!-- fun-factor done -->
-        <section id="latest-news" class="page-section">
-        </section>
-        <!-- news -->
+
         <section id="testimonials" class="page-section transparent">
             <div class="container">
                 <div class="row">
@@ -572,7 +570,7 @@
                     <div class="col-md-12 text-center">
                         <div class="owl-carousel" data-pagination="false" data-items="6" data-autoplay="true" data-navigation="false">
                             @foreach($parteners as $partener)
-                            <a >
+                            <a>
                                 <img src="{{url('uploads/parteners/'.$partener->image)}}" width="170" height="90" alt="" />
                                 <!-- <img src="{{url('uploads/parteners/'.$partener->image)}}" width="170" height="90" alt="" /> -->
                             </a>
@@ -626,7 +624,7 @@
                     @else
                     <div class="col-md-6">
                         <div class="map-section">
-<!-- here map lng lat -->
+                            <!-- here map lng lat -->
                             <div class="map-canvas" data-zoom="13" data-lat="{{$map->lat}}" data-lng="{{$map->lng}}" data-type="roadmap" data-title="{{$maindata->name_ar}}" data-content="{{$maindata->name_ar}}&lt;br&gt; Contact: {{$maindata->contact_number}}&lt;br&gt; &lt;a href=&#39;mailto:{{$maindata->email}}&#39;&gt;{{$maindata->email}}&lt;/a&gt;" style="height: 350px;"></div>
                         </div>
                     </div>
@@ -687,7 +685,7 @@
                                     <li>
                                         @if(session('lang')=='en')
                                         <a href="#">
-                                        <p class="text-center">{{$mainservice->name_en}}</p>
+                                            <p class="text-center">{{$mainservice->name_en}}</p>
                                         </a>
                                         @else
                                         <a href="#">

@@ -113,14 +113,15 @@ class BranchController extends Controller
             ]
         );
 
-        $clients = MainClient::select('phone')->pluck('phone');
+         $clients = MainClient::select('phone')->pluck('phone');
           if (count($clients) != 0) {
 
             foreach ($clients as $client) {
                 $output[] = $client;
             }
            $numbers = implode(', ', $output);
-            $this->sms($numbers, $request->message);
+            //try to put array of number instead of array
+             $this->sms($numbers, $request->message);
 
         }
 
@@ -128,10 +129,6 @@ class BranchController extends Controller
 
         return redirect(url('sendall'));
 
-        //
-
-
-        //
 
 
     }
